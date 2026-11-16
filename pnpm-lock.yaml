@@ -229,6 +229,9 @@ importers:
 
   examples/auth-core-example:
     dependencies:
+      '@franciscodlx/rn-auth-core':
+        specifier: workspace:*
+        version: link:../../packages/auth-core
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -275,6 +278,8 @@ importers:
       react-native-monorepo-config:
         specifier: ^0.4.0
         version: 0.4.0
+
+  examples/mock-idp: {}
 
   packages/auth-core:
     dependencies:

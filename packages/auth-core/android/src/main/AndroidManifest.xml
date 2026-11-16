@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- Lets the library find Custom Tabs providers and browsers on Android 11+. -->
+  <queries>
+    <intent>
+      <action android:name="android.support.customtabs.action.CustomTabsService" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="https" />
+    </intent>
+  </queries>
+
+  <application>
+    <!-- Invisible activity that owns the browser tab for the duration of a sign-in. -->
+    <activity
+      android:name=".AuthSessionActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+      android:exported="false"
+      android:launchMode="singleTask"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+    <!--
+      Receives the provider's redirect. The app sets the scheme with
+      manifestPlaceholders = [authCoreRedirectScheme: "myapp"] in its build.gradle.
+      For https App Links, add another intent-filter to this activity from the app manifest.
+    -->
+    <activity
+      android:name=".AuthRedirectActivity"
+      android:exported="true"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="${authCoreRedirectScheme}" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

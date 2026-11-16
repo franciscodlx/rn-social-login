@@ -43,6 +43,7 @@ export function useProviderLogin<TProfile>(
     async (overrides?: Partial<SignInOptions>) => {
       setLoading(true);
       setError(null);
+      setResult(null);
       try {
         const next = await login.signIn({
           ...latestOptions.current,

@@ -15,7 +15,7 @@ const ALPHABET =
 
 function base64UrlToBytes(input: string): number[] {
   const clean = input
-    .replace(/=+$/, '')
+    .replace(/[=]+$/, '')
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
   const bytes: number[] = [];

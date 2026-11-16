@@ -88,3 +88,24 @@ export function getScheme(url: string): string | undefined {
   const match = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(url);
   return match?.[1]?.toLowerCase();
 }
+
+const LOOPBACK_HOSTS = ['localhost', '127.0.0.1', '10.0.2.2', '[::1]'];
+
+/**
+ * https, or plain http to a loopback host (`10.0.2.2` is the Android
+ * emulator's alias for the host machine) so a local test server can be used.
+ */
+export function isSecureEndpoint(url: string): boolean {
+  const match = /^(https?):\/\/([^/?#]+)/i.exec(url);
+  if (!match) {
+    return false;
+  }
+  if (match[1]?.toLowerCase() === 'https') {
+    return true;
+  }
+  const host = (match[2] ?? '')
+    .slice((match[2] ?? '').lastIndexOf('@') + 1)
+    .replace(/:\d+$/, '')
+    .toLowerCase();
+  return LOOPBACK_HOSTS.includes(host);
+}

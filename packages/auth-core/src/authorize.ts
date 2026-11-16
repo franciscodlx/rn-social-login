@@ -3,6 +3,7 @@ import { getNativeModule } from './native';
 import {
   appendParams,
   getScheme,
+  isSecureEndpoint,
   matchesRedirectUri,
   parseRedirectParams,
   type Params,
@@ -53,7 +54,7 @@ function assertConfig(request: AuthorizeRequest): void {
       `Missing required option(s): ${missing.join(', ')}`
     );
   }
-  if (getScheme(request.authorizationEndpoint) !== 'https') {
+  if (!isSecureEndpoint(request.authorizationEndpoint)) {
     throw new AuthError(
       'INVALID_CONFIG',
       'authorizationEndpoint must be an https URL'

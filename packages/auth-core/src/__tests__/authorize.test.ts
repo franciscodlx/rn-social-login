@@ -132,9 +132,25 @@ describe('authorize', () => {
       authorize({ ...request, authorizationEndpoint: 'http://idp.test/a' })
     ).rejects.toMatchObject({ code: 'INVALID_CONFIG' });
     await expect(
+      authorize({
+        ...request,
+        authorizationEndpoint: 'http://localhost.evil.io/a',
+      })
+    ).rejects.toMatchObject({ code: 'INVALID_CONFIG' });
+    await expect(
       authorize({ ...request, redirectUri: 'callback' })
     ).rejects.toMatchObject({ code: 'INVALID_CONFIG' });
     expect(native.openAuthSession).not.toHaveBeenCalled();
+  });
+
+  it('allows plain http only for a local test server', async () => {
+    approveWith(native);
+    await expect(
+      authorize({
+        ...request,
+        authorizationEndpoint: 'http://10.0.2.2:4000/authorize',
+      })
+    ).resolves.toMatchObject({ code: 'the-code' });
   });
 
   it('refuses a second sign-in while one is open, then recovers', async () => {
