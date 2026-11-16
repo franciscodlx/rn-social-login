@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'examples/*'
+
+# Install scripts we do not need: prebuilt binaries are used instead.
+allowBuilds:
+  '@parcel/watcher': false
+
+# React Native tooling (Gradle, CocoaPods, Metro, Jest preset) expects a flat node_modules.
+nodeLinker: hoisted
