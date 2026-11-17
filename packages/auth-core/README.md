@@ -92,7 +92,19 @@ const { code, codeVerifier, nonce, redirectUri } = await login.signIn({
 | `decodeIdToken`, `validateIdTokenClaims`                             | Claims del `id_token` y revisión de `iss`, `aud`, `exp`, `nonce`                                                                                                   |
 | `createPkcePair()`, `randomString()`                                 | PKCE S256 y aleatorios del CSPRNG nativo                                                                                                                           |
 
-Opciones de `signIn`: `clientId`, `redirectUri`, `scopes`, `extraParams`, `prefersEphemeralSession` (no comparte cookies con el navegador; en iOS además evita el aviso de confirmación), `exchangeCode`.
+Opciones de `signIn`: `clientId`, `redirectUri`, `callbackUri`, `scopes`, `extraParams`, `prefersEphemeralSession` (no comparte cookies con el navegador; en iOS además evita el aviso de confirmación), `exchangeCode`.
+
+### Proveedores que solo aceptan redirect https
+
+Si el proveedor no admite `miapp://…`, registra una URL https de tu backend como `redirectUri` y haz que reenvíe la query a tu app; `callbackUri` es la URL donde la app espera:
+
+```ts
+signIn({
+  clientId,
+  redirectUri: 'https://api.miapp.com/auth/callback', // lo ve el proveedor
+  callbackUri: 'miapp://callback', // lo recibe la app
+});
+```
 
 ## Backend (canje del código)
 

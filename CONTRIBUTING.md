@@ -16,6 +16,8 @@ El workspace usa `nodeLinker: hoisted` (ver `pnpm-workspace.yaml`): Gradle, Coco
 
 En el emulador de Android el ejemplo llega al proveedor local por `10.0.2.2`; en el simulador de iOS, por `localhost`.
 
+Para LinkedIn el ejemplo necesita además el backend: `pnpm --filter @franciscodlx/linkedin-backend-example start` y la app `@franciscodlx/react-native-linkedin-login-example`.
+
 ## Qué probar en dispositivo antes de abrir un PR
 
 | Caso                                        | Resultado esperado                                   |
@@ -39,7 +41,7 @@ pnpm changeset   # describe el cambio; genera la entrada del CHANGELOG
 ## Agregar un proveedor
 
 1. Crea `packages/<proveedor>-login` con `createProviderLogin({ … })` del núcleo: endpoints, scopes por defecto y `mapProfile`.
-2. Agrega `examples/<proveedor>-login-example`.
+2. Crea su app de ejemplo con `scripts/new-example.sh` (clona `examples/auth-core-example` con otro nombre, id y esquema).
 3. Copia la plantilla de README de `packages/auth-core` y completa la sección "Configurar el proveedor".
 4. Si es un fork, conserva la licencia y el copyright originales y menciona el repo de origen.
 

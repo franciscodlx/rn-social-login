@@ -7,5 +7,10 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@franciscodlx/rn-auth-core-example", "@franciscodlx/mock-idp"]
+  "ignore": [
+    "@franciscodlx/linkedin-backend-example",
+    "@franciscodlx/mock-idp",
+    "@franciscodlx/react-native-linkedin-login-example",
+    "@franciscodlx/rn-auth-core-example"
+  ]
 }

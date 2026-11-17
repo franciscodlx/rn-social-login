@@ -22,8 +22,12 @@ Cada proveedor es un paquete independiente (versión, changelog y publicación p
 
 ```
 packages/auth-core            núcleo (TurboModule: Swift + Kotlin)
+packages/linkedin-login       LinkedIn (JS sobre el núcleo)
 examples/auth-core-example    app para probar el núcleo en iOS y Android
+examples/linkedin-login-example  app para probar LinkedIn
+examples/linkedin-backend     backend de ejemplo: redirect https y canje con el secret
 examples/mock-idp             proveedor OAuth/OIDC local, sin credenciales reales
+scripts/new-example.sh        crea la app de ejemplo de un plugin nuevo
 ```
 
 ## Desarrollo

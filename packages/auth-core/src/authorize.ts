@@ -14,6 +14,14 @@ export interface AuthorizeRequest {
   clientId: string;
   /** Custom scheme (`myapp://callback`) or https Universal/App Link. */
   redirectUri: string;
+  /**
+   * URL the browser finally lands on, when it is not `redirectUri` itself.
+   * For providers that only accept https redirects: `redirectUri` is a page
+   * on your backend that forwards the query string to this app URL.
+   */
+  callbackUri?: string;
+  /** Provider `error` values that mean the user backed out. `access_denied` always does. */
+  cancelErrors?: string[];
   scopes?: string[];
   /** Defaults to a space, as in RFC 6749. Some providers use a comma. */
   scopeSeparator?: string;
@@ -66,6 +74,12 @@ function assertConfig(request: AuthorizeRequest): void {
       'redirectUri must be an absolute URI, e.g. myapp://callback'
     );
   }
+  if (request.callbackUri !== undefined && !getScheme(request.callbackUri)) {
+    throw new AuthError(
+      'INVALID_CONFIG',
+      'callbackUri must be an absolute URI, e.g. myapp://callback'
+    );
+  }
 }
 
 /**
@@ -106,12 +120,13 @@ export async function authorize(
     code_challenge_method: codeVerifier ? 'S256' : undefined,
   });
 
+  const callbackUri = request.callbackUri ?? request.redirectUri;
   let redirect: string;
   inProgress = true;
   try {
     redirect = await native.openAuthSession(
       url,
-      request.redirectUri,
+      callbackUri,
       request.prefersEphemeralSession ?? false
     );
   } catch (error) {
@@ -120,7 +135,7 @@ export async function authorize(
     inProgress = false;
   }
 
-  if (!matchesRedirectUri(redirect, request.redirectUri)) {
+  if (!matchesRedirectUri(redirect, callbackUri)) {
     throw new AuthError(
       'PROVIDER_ERROR',
       'The browser returned to an unexpected redirect URI'
@@ -132,7 +147,10 @@ export async function authorize(
   // and an error grants nothing.
   if (params.error) {
     throw new AuthError(
-      params.error === 'access_denied' ? 'CANCELLED' : 'PROVIDER_ERROR',
+      params.error === 'access_denied' ||
+        request.cancelErrors?.includes(params.error)
+        ? 'CANCELLED'
+        : 'PROVIDER_ERROR',
       params.error_description || `The provider returned "${params.error}"`,
       {
         providerError: params.error,

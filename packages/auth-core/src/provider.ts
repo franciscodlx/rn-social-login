@@ -31,6 +31,8 @@ export interface ProviderConfig<TProfile = Record<string, unknown>> {
   /** Send and verify an OpenID Connect nonce. Defaults to false. */
   useNonce?: boolean;
   clientIdParam?: string;
+  /** Provider `error` values that mean the user backed out (besides `access_denied`). */
+  cancelErrors?: string[];
   extraAuthParams?: Record<string, string>;
   extraTokenParams?: Record<string, string>;
   /** Maps the userinfo response (or the id_token claims) to a typed profile. */
@@ -40,6 +42,8 @@ export interface ProviderConfig<TProfile = Record<string, unknown>> {
 export interface SignInOptions {
   clientId: string;
   redirectUri: string;
+  /** App URL the browser lands on when `redirectUri` is a forwarding page on your backend. */
+  callbackUri?: string;
   /** Overrides the provider's default scopes. */
   scopes?: string[];
   extraParams?: Record<string, string>;
@@ -102,6 +106,8 @@ export function createProviderLogin<TProfile = Record<string, unknown>>(
       authorizationEndpoint: provider.authorizationEndpoint,
       clientId: options.clientId,
       redirectUri: options.redirectUri,
+      callbackUri: options.callbackUri,
+      cancelErrors: provider.cancelErrors,
       scopes: options.scopes ?? provider.defaultScopes,
       scopeSeparator: provider.scopeSeparator,
       usePKCE: provider.usePKCE,

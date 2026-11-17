@@ -91,3 +91,28 @@ test('requests without PKCE and denied requests redirect with an error', async (
   assert.equal(denied.searchParams.get('error'), 'access_denied');
   assert.equal(denied.searchParams.get('state'), 's1');
 });
+
+test('a confidential client needs its secret and may skip PKCE', async () => {
+  const query = new URLSearchParams({
+    response_type: 'code',
+    client_id: 'confidential-app',
+    redirect_uri: 'https://api.test/cb',
+    state: 's2',
+    decision: 'approve',
+  });
+  const res = await fetch(`${base}/authorize?${query}`, { redirect: 'manual' });
+  const code = new URL(res.headers.get('location')).searchParams.get('code');
+  const form = {
+    grant_type: 'authorization_code',
+    code,
+    client_id: 'confidential-app',
+    redirect_uri: 'https://api.test/cb',
+  };
+  const noSecret = await exchange(form);
+  assert.equal(noSecret.status, 401);
+  assert.equal((await noSecret.json()).error, 'invalid_client');
+
+  const ok = await exchange({ ...form, client_secret: 'mock-secret' });
+  assert.equal(ok.status, 200);
+  assert.ok((await ok.json()).id_token);
+});

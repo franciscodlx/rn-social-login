@@ -143,6 +143,33 @@ describe('authorize', () => {
     expect(native.openAuthSession).not.toHaveBeenCalled();
   });
 
+  it('waits on callbackUri while sending redirectUri to the provider', async () => {
+    approveWith(native);
+    const result = await authorize({
+      ...request,
+      redirectUri: 'https://api.test/oauth/callback',
+      callbackUri: 'myapp://callback',
+    });
+    expect(sentParams().redirect_uri).toBe('https://api.test/oauth/callback');
+    expect(native.openAuthSession.mock.calls[0]![1]).toBe('myapp://callback');
+    // The backend exchanges the code with the URI the provider saw.
+    expect(result.redirectUri).toBe('https://api.test/oauth/callback');
+  });
+
+  it('treats provider-specific cancel errors as CANCELLED', async () => {
+    approveWith(native, { error: 'user_cancelled_login' });
+    await expect(authorize(request)).rejects.toMatchObject({
+      code: 'PROVIDER_ERROR',
+    });
+    approveWith(native, { error: 'user_cancelled_login' });
+    await expect(
+      authorize({ ...request, cancelErrors: ['user_cancelled_login'] })
+    ).rejects.toMatchObject({
+      code: 'CANCELLED',
+      providerError: 'user_cancelled_login',
+    });
+  });
+
   it('allows plain http only for a local test server', async () => {
     approveWith(native);
     await expect(

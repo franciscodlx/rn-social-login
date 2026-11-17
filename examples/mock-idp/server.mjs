@@ -2,9 +2,14 @@
 // It behaves like a real provider for a PUBLIC client: authorization code +
 // PKCE (S256), no client secret. Not for production use.
 //
+// The client id `confidential-app` (secret `mock-secret`) behaves like
+// providers that need a backend, e.g. LinkedIn: PKCE is optional and the token
+// endpoint requires the client secret.
+//
 //   node server.mjs                  → consent page with Approve / Deny
 //   MOCK_IDP_AUTO=approve node …     → redirects back immediately (for e2e)
 //   MOCK_IDP_AUTO=deny node …        → always answers access_denied
+//   MOCK_IDP_DENY_ERROR=user_cancelled_login → error code used when denying
 import {
   createHash,
   createSign,
@@ -21,6 +26,9 @@ const USER = {
   email_verified: true,
 };
 
+/** Clients that must authenticate with a secret at the token endpoint. */
+export const CONFIDENTIAL_CLIENTS = { 'confidential-app': 'mock-secret' };
+
 const b64url = (input) => Buffer.from(input).toString('base64url');
 const sha256 = (input) =>
   createHash('sha256').update(input).digest('base64url');
@@ -28,6 +36,7 @@ const sha256 = (input) =>
 export function createMockIdp({
   issuer = 'http://localhost:4000',
   auto = process.env.MOCK_IDP_AUTO ?? '',
+  denyError = process.env.MOCK_IDP_DENY_ERROR || 'access_denied',
   log = () => {},
 } = {}) {
   const { privateKey, publicKey } = generateKeyPairSync('rsa', {
@@ -92,13 +101,16 @@ export function createMockIdp({
         'Only response_type=code is supported'
       );
     }
-    if (!q.code_challenge || q.code_challenge_method !== 'S256') {
+    const confidential = q.client_id in CONFIDENTIAL_CLIENTS;
+    const hasPkce =
+      Boolean(q.code_challenge) && q.code_challenge_method === 'S256';
+    if (!hasPkce && (!confidential || q.code_challenge)) {
       return fail('invalid_request', 'PKCE with S256 is required');
     }
 
     const decision = url.searchParams.get('decision') ?? auto;
     if (decision === 'deny') {
-      return fail('access_denied', 'The user denied the request');
+      return fail(denyError, 'The user denied the request');
     }
     if (decision === 'approve') {
       const code = randomBytes(16).toString('base64url');
@@ -141,6 +153,14 @@ export function createMockIdp({
   }
 
   function token(form, res) {
+    const secret = CONFIDENTIAL_CLIENTS[form.client_id];
+    if (secret !== undefined && form.client_secret !== secret) {
+      return send(res, 401, {
+        error: 'invalid_client',
+        error_description: 'client_secret is missing or wrong',
+      });
+    }
+
     const invalid = (description) =>
       send(res, 400, {
         error: 'invalid_grant',
@@ -166,8 +186,9 @@ export function createMockIdp({
         );
       }
       if (
-        !form.code_verifier ||
-        sha256(form.code_verifier) !== pending.codeChallenge
+        pending.codeChallenge &&
+        (!form.code_verifier ||
+          sha256(form.code_verifier) !== pending.codeChallenge)
       ) {
         return invalid('PKCE verification failed');
       }

@@ -25,11 +25,16 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm --filter @franciscodlx/mock-idp test
+      - run: pnpm --filter @franciscodlx/linkedin-backend-example test
       - run: pnpm build
 
   android:
-    name: Example (Android)
+    name: ${{ matrix.example }} (Android)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example: [auth-core-example, linkedin-login-example]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
@@ -43,14 +48,20 @@ jobs:
           java-version: '17'
       - run: pnpm install --frozen-lockfile
       - name: Build example
-        working-directory: examples/auth-core-example/android
+        working-directory: examples/${{ matrix.example }}/android
         env:
           GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx6g'
         run: ./gradlew assembleDebug --no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a
 
   ios:
-    name: Example (iOS)
+    name: ${{ matrix.example.dir }} (iOS)
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - { dir: auth-core-example, app: RnAuthCoreExample }
+          - { dir: linkedin-login-example, app: LinkedInLoginExample }
     env:
       RCT_USE_RN_DEP: 1
       RCT_USE_PREBUILT_RNCORE: 1
@@ -63,14 +74,14 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Install pods
-        working-directory: examples/auth-core-example
+        working-directory: examples/${{ matrix.example.dir }}
         run: |
           bundle install
           bundle exec pod install --project-directory=ios
       - name: Build example
-        working-directory: examples/auth-core-example/ios
+        working-directory: examples/${{ matrix.example.dir }}/ios
         run: |
-          xcodebuild -workspace RnAuthCoreExample.xcworkspace -scheme RnAuthCoreExample \
+          xcodebuild -workspace ${{ matrix.example.app }}.xcworkspace -scheme ${{ matrix.example.app }} \
             -configuration Debug -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' \
             ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build

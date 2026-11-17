@@ -1,0 +1,5 @@
+# Native projects and generated files keep their own formatting.
+examples/*/ios
+examples/*/android
+pnpm-lock.yaml
+lib

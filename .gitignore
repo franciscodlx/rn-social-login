@@ -83,3 +83,8 @@ examples/*/android/app/.cxx
 
 # Tests
 coverage/
+
+# Secrets
+.env
+.env.*
+!.env.example
