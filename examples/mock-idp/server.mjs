@@ -10,6 +10,9 @@
 // X scopes (`users.read`) it only issues a refresh token with
 // `offline.access` and the email with `users.email`.
 //
+// A request carrying the OpenID Connect `claims` parameter is answered like
+// Twitch: `sub` plus only the claims that were asked for.
+//
 //   node server.mjs                  → consent page with Approve / Deny
 //   MOCK_IDP_AUTO=approve node …     → redirects back immediately (for e2e)
 //   MOCK_IDP_AUTO=deny node …        → always answers access_denied
@@ -43,6 +46,31 @@ const X_USER = {
   confirmed_email: USER.email,
 };
 
+/** Claims a Twitch-style client can ask for through the `claims` parameter. */
+const TWITCH_CLAIMS = {
+  email: USER.email,
+  email_verified: true,
+  picture: 'https://example.com/ada-twitch.png',
+  preferred_username: 'AdaLovelace',
+  updated_at: '2026-01-01T00:00:00Z',
+};
+
+/** Twitch only returns `sub` plus the claims named in `claims`. */
+function requestedClaims(claimsParam, target) {
+  let wanted = {};
+  try {
+    wanted = JSON.parse(claimsParam)?.[target] ?? {};
+  } catch {
+    // Malformed `claims`: nothing extra is returned.
+  }
+  return {
+    sub: USER.sub,
+    ...Object.fromEntries(
+      Object.entries(TWITCH_CLAIMS).filter(([name]) => name in wanted)
+    ),
+  };
+}
+
 const b64url = (input) => Buffer.from(input).toString('base64url');
 const sha256 = (input) =>
   createHash('sha256').update(input).digest('base64url');
@@ -65,6 +93,7 @@ export function createMockIdp({
   const codes = new Map(); // code → pending authorization
   const refreshTokens = new Map(); // refresh token → granted scope
   const tokens = new Map(); // live access token → granted scope
+  const tokenClaims = new Map(); // live access token → `claims` parameter
 
   function signIdToken(claims) {
     const header = b64url(
@@ -134,6 +163,7 @@ export function createMockIdp({
         redirectUri: q.redirect_uri,
         codeChallenge: q.code_challenge,
         nonce: q.nonce,
+        claims: q.claims,
         scope: q.scope ?? '',
         expiresAt: Date.now() + 60_000,
       });
@@ -211,6 +241,7 @@ export function createMockIdp({
         return invalid('PKCE verification failed');
       }
       form.nonce = pending.nonce;
+      form.claims = pending.claims;
       form.scope = pending.scope;
     } else {
       return send(res, 400, { error: 'unsupported_grant_type' });
@@ -219,6 +250,9 @@ export function createMockIdp({
     const accessToken = `at-${randomBytes(16).toString('base64url')}`;
     const scope = form.scope ?? '';
     tokens.set(accessToken, scope);
+    if (form.claims) {
+      tokenClaims.set(accessToken, form.claims);
+    }
     // Like X: a refresh token only with the `offline.access` scope; OpenID
     // Connect clients (no X scopes) always get one.
     const xStyle = scope.split(' ').includes('users.read');
@@ -240,7 +274,7 @@ export function createMockIdp({
         iat: now,
         exp: now + 3600,
         ...(form.nonce ? { nonce: form.nonce } : {}),
-        ...USER,
+        ...(form.claims ? requestedClaims(form.claims, 'id_token') : USER),
       }),
     });
   }
@@ -287,9 +321,16 @@ export function createMockIdp({
           /^Bearer /i,
           ''
         );
-        return tokens.has(bearer)
-          ? send(res, 200, USER)
-          : send(res, 401, { error: 'invalid_token' });
+        if (!tokens.has(bearer)) {
+          return send(res, 401, { error: 'invalid_token' });
+        }
+        return send(
+          res,
+          200,
+          tokenClaims.has(bearer)
+            ? requestedClaims(tokenClaims.get(bearer), 'userinfo')
+            : USER
+        );
       }
       // X API v2: the user comes wrapped in `data`, with only the requested
       // fields, and the email needs the `users.email` scope.

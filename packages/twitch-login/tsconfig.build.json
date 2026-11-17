@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "rootDir": ".",
+    // Build against the core's published types, not its source.
+    "customConditions": ["react-native-strict-api"]
+  },
+  "exclude": ["lib", "**/__tests__/**", "**/__fixtures__/**"]
+}

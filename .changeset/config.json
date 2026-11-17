@@ -13,7 +13,9 @@
     "@franciscodlx/mock-idp",
     "@franciscodlx/react-native-mercadolibre-login-example",
     "@franciscodlx/react-native-linkedin-login-example",
+    "@franciscodlx/react-native-twitch-login-example",
     "@franciscodlx/react-native-x-login-example",
-    "@franciscodlx/rn-auth-core-example"
+    "@franciscodlx/rn-auth-core-example",
+    "@franciscodlx/twitch-backend-example"
   ]
 }
