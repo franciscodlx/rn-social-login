@@ -1,0 +1,79 @@
+{
+  "name": "@franciscodlx/react-native-telegram-login",
+  "version": "0.1.0",
+  "description": "Log in with Telegram (OpenID Connect + PKCE) for React Native in the system browser, code exchanged by your backend. No client secret in the app.",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "rn-social-login-source": "./src/index.ts",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "build": "bob build",
+    "typecheck": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "react-native",
+    "telegram",
+    "telegram-login",
+    "oauth2",
+    "openid-connect",
+    "pkce",
+    "social-login",
+    "expo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscodlx/rn-social-login.git",
+    "directory": "packages/telegram-login"
+  },
+  "author": "Francisco (https://github.com/franciscodlx)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/franciscodlx/rn-social-login/issues"
+  },
+  "homepage": "https://github.com/franciscodlx/rn-social-login/tree/main/packages/telegram-login#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@franciscodlx/rn-auth-core": "workspace:*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}

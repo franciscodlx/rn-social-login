@@ -13,6 +13,9 @@
 // For the presets: `GET /user` and `/user/emails` (GitHub), `GET /users/@me`
 // (Discord) and an `athlete` object in the token response (Strava).
 //
+// The token endpoint also accepts HTTP Basic client authentication, and the
+// `phone` scope adds Telegram-style claims to the id_token.
+//
 // A request carrying the OpenID Connect `claims` parameter is answered like
 // Twitch: `sub` plus only the claims that were asked for.
 //
@@ -286,6 +289,15 @@ export function createMockIdp({
         exp: now + 3600,
         ...(form.nonce ? { nonce: form.nonce } : {}),
         ...(form.claims ? requestedClaims(form.claims, 'id_token') : USER),
+        // Telegram has no userinfo endpoint: everything is in the id_token.
+        ...(scope.split(' ').includes('phone')
+          ? {
+              id: 987654321,
+              preferred_username: 'ada_lovelace',
+              picture: 'https://example.com/ada-telegram.jpg',
+              phone_number: '+5215500000000',
+            }
+          : {}),
       }),
     });
   }
@@ -325,7 +337,17 @@ export function createMockIdp({
         return authorize(url, res);
       }
       if (req.method === 'POST' && url.pathname === '/token') {
-        return token(await readForm(req), res);
+        const form = await readForm(req);
+        // client_secret_basic, as Telegram uses it.
+        const basic = /^Basic (.+)$/i.exec(req.headers.authorization ?? '');
+        if (basic) {
+          const [id, ...rest] = Buffer.from(basic[1], 'base64')
+            .toString()
+            .split(':');
+          form.client_id ??= id;
+          form.client_secret ??= rest.join(':');
+        }
+        return token(form, res);
       }
       if (req.method === 'GET' && url.pathname === '/userinfo') {
         const bearer = (req.headers.authorization ?? '').replace(
