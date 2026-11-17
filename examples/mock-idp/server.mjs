@@ -6,6 +6,10 @@
 // providers that need a backend, e.g. LinkedIn: PKCE is optional and the token
 // endpoint requires the client secret.
 //
+// It also answers `GET /2/users/me` in the shape of the X API v2, and for
+// X scopes (`users.read`) it only issues a refresh token with
+// `offline.access` and the email with `users.email`.
+//
 //   node server.mjs                  → consent page with Approve / Deny
 //   MOCK_IDP_AUTO=approve node …     → redirects back immediately (for e2e)
 //   MOCK_IDP_AUTO=deny node …        → always answers access_denied
@@ -29,6 +33,16 @@ const USER = {
 /** Clients that must authenticate with a secret at the token endpoint. */
 export const CONFIDENTIAL_CLIENTS = { 'confidential-app': 'mock-secret' };
 
+/** Same user in the shape of X's `GET /2/users/me`. */
+const X_USER = {
+  id: '2244994945',
+  name: USER.name,
+  username: 'ada_lovelace',
+  profile_image_url: 'https://example.com/ada_normal.jpg',
+  verified: false,
+  confirmed_email: USER.email,
+};
+
 const b64url = (input) => Buffer.from(input).toString('base64url');
 const sha256 = (input) =>
   createHash('sha256').update(input).digest('base64url');
@@ -49,7 +63,8 @@ export function createMockIdp({
     alg: 'RS256',
   };
   const codes = new Map(); // code → pending authorization
-  const tokens = new Set(); // live access tokens
+  const refreshTokens = new Map(); // refresh token → granted scope
+  const tokens = new Map(); // live access token → granted scope
 
   function signIdToken(claims) {
     const header = b64url(
@@ -168,9 +183,12 @@ export function createMockIdp({
       });
 
     if (form.grant_type === 'refresh_token') {
-      if (!form.refresh_token?.startsWith('rt-')) {
+      if (!refreshTokens.has(form.refresh_token)) {
         return invalid('Unknown refresh token');
       }
+      // Rotation: a refresh token works once.
+      form.scope = refreshTokens.get(form.refresh_token);
+      refreshTokens.delete(form.refresh_token);
     } else if (form.grant_type === 'authorization_code') {
       const pending = codes.get(form.code);
       codes.delete(form.code); // single use
@@ -199,14 +217,23 @@ export function createMockIdp({
     }
 
     const accessToken = `at-${randomBytes(16).toString('base64url')}`;
-    tokens.add(accessToken);
+    const scope = form.scope ?? '';
+    tokens.set(accessToken, scope);
+    // Like X: a refresh token only with the `offline.access` scope; OpenID
+    // Connect clients (no X scopes) always get one.
+    const xStyle = scope.split(' ').includes('users.read');
+    let refreshToken;
+    if (!xStyle || scope.split(' ').includes('offline.access')) {
+      refreshToken = `rt-${randomBytes(16).toString('base64url')}`;
+      refreshTokens.set(refreshToken, scope);
+    }
     const now = Math.floor(Date.now() / 1000);
     return send(res, 200, {
       access_token: accessToken,
       token_type: 'Bearer',
       expires_in: 3600,
-      refresh_token: `rt-${randomBytes(16).toString('base64url')}`,
-      scope: form.scope ?? '',
+      ...(refreshToken ? { refresh_token: refreshToken } : {}),
+      scope,
       id_token: signIdToken({
         iss: issuer,
         aud: form.client_id,
@@ -263,6 +290,36 @@ export function createMockIdp({
         return tokens.has(bearer)
           ? send(res, 200, USER)
           : send(res, 401, { error: 'invalid_token' });
+      }
+      // X API v2: the user comes wrapped in `data`, with only the requested
+      // fields, and the email needs the `users.email` scope.
+      if (req.method === 'GET' && url.pathname === '/2/users/me') {
+        const bearer = (req.headers.authorization ?? '').replace(
+          /^Bearer /i,
+          ''
+        );
+        if (!tokens.has(bearer)) {
+          return send(res, 401, {
+            title: 'Unauthorized',
+            status: 401,
+            detail: 'Unauthorized',
+          });
+        }
+        const scopes = tokens.get(bearer).split(' ');
+        const fields = new Set([
+          'id',
+          'name',
+          'username',
+          ...(url.searchParams.get('user.fields') ?? '').split(','),
+        ]);
+        if (!scopes.includes('users.email')) {
+          fields.delete('confirmed_email');
+        }
+        return send(res, 200, {
+          data: Object.fromEntries(
+            Object.entries(X_USER).filter(([key]) => fields.has(key))
+          ),
+        });
       }
       if (req.method === 'POST' && url.pathname === '/revoke') {
         tokens.delete((await readForm(req)).token);

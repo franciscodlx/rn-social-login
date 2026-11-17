@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [auth-core-example, linkedin-login-example]
+        example: [auth-core-example, linkedin-login-example, x-login-example]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
@@ -62,6 +62,7 @@ jobs:
         example:
           - { dir: auth-core-example, app: RnAuthCoreExample }
           - { dir: linkedin-login-example, app: LinkedInLoginExample }
+          - { dir: x-login-example, app: XLoginExample }
     env:
       RCT_USE_RN_DEP: 1
       RCT_USE_PREBUILT_RNCORE: 1

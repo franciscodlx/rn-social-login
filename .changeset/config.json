@@ -11,6 +11,7 @@
     "@franciscodlx/linkedin-backend-example",
     "@franciscodlx/mock-idp",
     "@franciscodlx/react-native-linkedin-login-example",
+    "@franciscodlx/react-native-x-login-example",
     "@franciscodlx/rn-auth-core-example"
   ]
 }

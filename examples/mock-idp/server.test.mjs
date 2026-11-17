@@ -116,3 +116,58 @@ test('a confidential client needs its secret and may skip PKCE', async () => {
   assert.equal(ok.status, 200);
   assert.ok((await ok.json()).id_token);
 });
+
+test('X-style client: users/me envelope, email and refresh token depend on scopes', async () => {
+  const signIn = async (scope) => {
+    const code = (await getCode({ scope })).searchParams.get('code');
+    const res = await exchange({
+      grant_type: 'authorization_code',
+      code,
+      client_id: 'app',
+      redirect_uri: 'myapp://callback',
+      code_verifier: verifier,
+    });
+    return res.json();
+  };
+  const me = async (accessToken) => {
+    const res = await fetch(
+      `${base}/2/users/me?user.fields=id,name,username,verified,confirmed_email`,
+      { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
+    return { status: res.status, body: await res.json() };
+  };
+
+  const basic = await signIn('users.read tweet.read');
+  assert.equal(basic.refresh_token, undefined);
+  assert.deepEqual((await me(basic.access_token)).body, {
+    data: {
+      id: '2244994945',
+      name: 'Ada Lovelace',
+      username: 'ada_lovelace',
+      verified: false,
+    },
+  });
+
+  const full = await signIn('users.read tweet.read users.email offline.access');
+  assert.equal(
+    (await me(full.access_token)).body.data.confirmed_email,
+    'ada@example.com'
+  );
+
+  const refresh = () =>
+    exchange({
+      grant_type: 'refresh_token',
+      refresh_token: full.refresh_token,
+      client_id: 'app',
+    });
+  const refreshed = await (await refresh()).json();
+  assert.ok(refreshed.access_token);
+  assert.notEqual(refreshed.refresh_token, full.refresh_token);
+  assert.equal((await refresh()).status, 400); // rotated: single use
+
+  await fetch(`${base}/revoke`, {
+    method: 'POST',
+    body: new URLSearchParams({ token: basic.access_token, client_id: 'app' }),
+  });
+  assert.equal((await me(basic.access_token)).status, 401);
+});
