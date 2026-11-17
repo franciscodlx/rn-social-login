@@ -31,6 +31,7 @@ jobs:
       - run: pnpm --filter @franciscodlx/presets-backend-example test
       - run: pnpm --filter @franciscodlx/telegram-backend-example test
       - run: pnpm --filter @franciscodlx/tiktok-backend-example test
+      - run: pnpm --filter @franciscodlx/mock-entra test
       - run: pnpm build
 
   android:
@@ -39,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example, twitch-login-example, oauth-presets-example, telegram-login-example, tiktok-login-example]
+        example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example, twitch-login-example, oauth-presets-example, telegram-login-example, tiktok-login-example, entra-native-auth-example]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
@@ -73,6 +74,7 @@ jobs:
           - { dir: oauth-presets-example, app: OAuthPresetsExample }
           - { dir: telegram-login-example, app: TelegramLoginExample }
           - { dir: tiktok-login-example, app: TikTokLoginExample }
+          - { dir: entra-native-auth-example, app: EntraNativeAuthExample }
     env:
       RCT_USE_RN_DEP: 1
       RCT_USE_PREBUILT_RNCORE: 1

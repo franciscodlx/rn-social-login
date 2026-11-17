@@ -18,6 +18,7 @@ const { code, codeVerifier } = await signIn({ clientId, redirectUri });
 | `@franciscodlx/rn-oauth-presets`                   | GitHub, Discord, Slack y Strava                                    | Probado con mock         |
 | `@franciscodlx/react-native-telegram-login`        | Telegram con OpenID Connect                                        | Probado con mock         |
 | `@franciscodlx/react-native-tiktok-login`          | TikTok Login Kit (flujo web)                                       | Probado con mock         |
+| `@franciscodlx/react-native-entra-native-auth`     | Entra External ID: alta, login y reset sin navegador               | Probado con mock         |
 
 Cada proveedor es un paquete independiente (versión, changelog y publicación propios) que solo aporta endpoints, scopes y mapeo de perfil; el flujo y la seguridad viven en el núcleo.
 
@@ -45,6 +46,9 @@ examples/telegram-backend    backend de ejemplo: canje con secret + PKCE y verif
 packages/tiktok-login        TikTok Login Kit, flujo web (JS sobre el núcleo)
 examples/tiktok-login-example  app para probar TikTok
 examples/tiktok-backend      backend de ejemplo: canje con client key + secret y perfil
+packages/entra-native-auth   Microsoft Entra External ID, native authentication (JS sobre el núcleo)
+examples/entra-native-auth-example  app para probar alta, inicio de sesión y restablecimiento
+examples/mock-entra          servidor local que imita la API de native authentication
 examples/linkedin-backend     backend de ejemplo: redirect https y canje con el secret
 examples/mock-idp             proveedor OAuth/OIDC local, sin credenciales reales
 scripts/new-example.sh        crea la app de ejemplo de un plugin nuevo

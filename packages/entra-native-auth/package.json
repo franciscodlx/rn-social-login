@@ -1,0 +1,79 @@
+{
+  "name": "@franciscodlx/react-native-entra-native-auth",
+  "version": "0.1.0",
+  "description": "Microsoft Entra External ID native authentication for React Native: sign-up, sign-in and password reset with your own screens, plus browser fallback.",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "rn-social-login-source": "./src/index.ts",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "build": "bob build",
+    "typecheck": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "react-native",
+    "microsoft",
+    "entra",
+    "entra-external-id",
+    "msal",
+    "native-authentication",
+    "ciam",
+    "expo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscodlx/rn-social-login.git",
+    "directory": "packages/entra-native-auth"
+  },
+  "author": "Francisco (https://github.com/franciscodlx)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/franciscodlx/rn-social-login/issues"
+  },
+  "homepage": "https://github.com/franciscodlx/rn-social-login/tree/main/packages/entra-native-auth#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@franciscodlx/rn-auth-core": "workspace:*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}

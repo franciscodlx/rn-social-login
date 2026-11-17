@@ -10,7 +10,9 @@
   "ignore": [
     "@franciscodlx/linkedin-backend-example",
     "@franciscodlx/mercadolibre-backend-example",
+    "@franciscodlx/mock-entra",
     "@franciscodlx/mock-idp",
+    "@franciscodlx/react-native-entra-native-auth-example",
     "@franciscodlx/react-native-mercadolibre-login-example",
     "@franciscodlx/presets-backend-example",
     "@franciscodlx/react-native-linkedin-login-example",
