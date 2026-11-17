@@ -1,0 +1,24 @@
+export {
+  presets,
+  github,
+  discord,
+  slack,
+  strava,
+  mapGitHubProfile,
+  mapDiscordProfile,
+  mapSlackProfile,
+  mapStravaProfile,
+} from './presets';
+export type { Preset, PresetName, PresetProfile } from './presets';
+export {
+  createPresetLogin,
+  githubLogin,
+  discordLogin,
+  slackLogin,
+  stravaLogin,
+} from './login';
+export type { PresetSignInOptions } from './login';
+export { useOAuthPreset } from './useOAuthPreset';
+// Same error class and codes as every plugin of the family.
+export { AuthError, isAuthError } from '@franciscodlx/rn-auth-core';
+export type { AuthErrorCode, SignInResult } from '@franciscodlx/rn-auth-core';

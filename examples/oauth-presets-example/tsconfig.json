@@ -1,0 +1,8 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "customConditions": ["rn-social-login-source", "react-native-strict-api"],
+    "types": ["jest"]
+  },
+  "include": ["src", "index.js"]
+}

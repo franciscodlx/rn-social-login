@@ -15,6 +15,7 @@ const { code, codeVerifier } = await signIn({ clientId, redirectUri });
 | `@franciscodlx/react-native-x-login`               | X con OAuth 2.0 + PKCE                                             | Probado con mock         |
 | `@franciscodlx/react-native-mercadolibre-login`    | Mercado Libre con selector de país                                 | Probado con mock         |
 | `@franciscodlx/react-native-twitch-login`          | Twitch con OIDC                                                    | Probado con mock         |
+| `@franciscodlx/rn-oauth-presets`                   | GitHub, Discord, Slack y Strava                                    | Probado con mock         |
 
 Cada proveedor es un paquete independiente (versión, changelog y publicación propios) que solo aporta endpoints, scopes y mapeo de perfil; el flujo y la seguridad viven en el núcleo.
 
@@ -33,6 +34,9 @@ examples/mercadolibre-backend  backend de ejemplo: redirect https y canje con se
 packages/twitch-login        Twitch con OpenID Connect (JS sobre el núcleo)
 examples/twitch-login-example  app para probar Twitch
 examples/twitch-backend      backend de ejemplo: canje con secret y verificación de id_token + nonce
+packages/oauth-presets       GitHub, Discord, Slack y Strava (JS sobre el núcleo)
+examples/oauth-presets-example  app para probar los cuatro presets
+examples/presets-backend     backend de ejemplo: una ruta de redirect y de canje por proveedor
 examples/linkedin-backend     backend de ejemplo: redirect https y canje con el secret
 examples/mock-idp             proveedor OAuth/OIDC local, sin credenciales reales
 scripts/new-example.sh        crea la app de ejemplo de un plugin nuevo

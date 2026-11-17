@@ -10,6 +10,9 @@
 // X scopes (`users.read`) it only issues a refresh token with
 // `offline.access` and the email with `users.email`.
 //
+// For the presets: `GET /user` and `/user/emails` (GitHub), `GET /users/@me`
+// (Discord) and an `athlete` object in the token response (Strava).
+//
 // A request carrying the OpenID Connect `claims` parameter is answered like
 // Twitch: `sub` plus only the claims that were asked for.
 //
@@ -268,6 +271,14 @@ export function createMockIdp({
       expires_in: 3600,
       ...(refreshToken ? { refresh_token: refreshToken } : {}),
       scope,
+      // Strava returns the athlete with the tokens.
+      athlete: {
+        id: 227615,
+        username: 'ada',
+        firstname: 'Ada',
+        lastname: 'Lovelace',
+        profile: 'https://example.com/ada-strava.jpg',
+      },
       id_token: signIdToken({
         iss: issuer,
         aud: form.client_id,
@@ -383,6 +394,51 @@ export function createMockIdp({
               },
             })
           : send(res, 401, { message: 'invalid_token', status: 401 });
+      }
+      // GitHub (`GET /user`) and Discord (`GET /users/@me`) user objects.
+      if (
+        req.method === 'GET' &&
+        (url.pathname === '/user' || url.pathname === '/users/@me')
+      ) {
+        const bearer = (req.headers.authorization ?? '').replace(
+          /^Bearer /i,
+          ''
+        );
+        if (!tokens.has(bearer)) {
+          return send(res, 401, { message: 'Bad credentials' });
+        }
+        return send(
+          res,
+          200,
+          url.pathname === '/user'
+            ? {
+                id: 583231,
+                login: 'ada-lovelace',
+                name: USER.name,
+                email: null, // private email: see /user/emails
+                avatar_url: 'https://example.com/ada-github.png',
+              }
+            : {
+                id: '80351110224678912',
+                username: 'ada',
+                global_name: USER.name,
+                avatar: 'a1b2c3',
+                email: USER.email,
+                verified: true,
+              }
+        );
+      }
+      if (req.method === 'GET' && url.pathname === '/user/emails') {
+        const bearer = (req.headers.authorization ?? '').replace(
+          /^Bearer /i,
+          ''
+        );
+        return tokens.has(bearer)
+          ? send(res, 200, [
+              { email: 'old@example.com', primary: false, verified: true },
+              { email: USER.email, primary: true, verified: true },
+            ])
+          : send(res, 401, { message: 'Bad credentials' });
       }
       if (req.method === 'POST' && url.pathname === '/revoke') {
         tokens.delete((await readForm(req)).token);

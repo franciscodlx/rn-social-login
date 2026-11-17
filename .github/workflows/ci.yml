@@ -28,6 +28,7 @@ jobs:
       - run: pnpm --filter @franciscodlx/linkedin-backend-example test
       - run: pnpm --filter @franciscodlx/mercadolibre-backend-example test
       - run: pnpm --filter @franciscodlx/twitch-backend-example test
+      - run: pnpm --filter @franciscodlx/presets-backend-example test
       - run: pnpm build
 
   android:
@@ -36,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example, twitch-login-example]
+        example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example, twitch-login-example, oauth-presets-example]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
@@ -67,6 +68,7 @@ jobs:
           - { dir: x-login-example, app: XLoginExample }
           - { dir: mercadolibre-login-example, app: MercadoLibreLoginExample }
           - { dir: twitch-login-example, app: TwitchLoginExample }
+          - { dir: oauth-presets-example, app: OAuthPresetsExample }
     env:
       RCT_USE_RN_DEP: 1
       RCT_USE_PREBUILT_RNCORE: 1

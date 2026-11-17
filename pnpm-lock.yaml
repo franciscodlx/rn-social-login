@@ -401,6 +401,63 @@ importers:
 
   examples/mock-idp: {}
 
+  examples/oauth-presets-example:
+    dependencies:
+      '@franciscodlx/rn-auth-core':
+        specifier: workspace:*
+        version: link:../../packages/auth-core
+      '@franciscodlx/rn-oauth-presets':
+        specifier: workspace:*
+        version: link:../../packages/oauth-presets
+      react:
+        specifier: 19.3.0
+        version: 19.3.0
+      react-native:
+        specifier: 0.88.0
+        version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.25.2
+        version: 7.29.13(supports-color@8.1.1)
+      '@babel/preset-env':
+        specifier: ^7.25.3
+        version: 7.29.14(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/runtime':
+        specifier: ^7.25.0
+        version: 7.29.14
+      '@react-native-community/cli':
+        specifier: 20.2.0
+        version: 20.2.0(supports-color@8.1.1)(typescript@6.0.3)
+      '@react-native-community/cli-platform-android':
+        specifier: 20.2.0
+        version: 20.2.0
+      '@react-native-community/cli-platform-ios':
+        specifier: 20.2.0
+        version: 20.2.0
+      '@react-native/babel-preset':
+        specifier: 0.88.0
+        version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1)
+      '@react-native/jest-preset':
+        specifier: 0.88.0
+        version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
+      '@react-native/metro-config':
+        specifier: 0.88.0
+        version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1)
+      '@react-native/typescript-config':
+        specifier: 0.88.0
+        version: 0.88.0
+      '@types/react':
+        specifier: ^19.2.0
+        version: 19.3.0
+      react-native-builder-bob:
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
+      react-native-monorepo-config:
+        specifier: ^0.4.0
+        version: 0.4.0
+
+  examples/presets-backend: {}
+
   examples/twitch-backend: {}
 
   examples/twitch-login-example:
@@ -536,6 +593,19 @@ importers:
         version: link:../auth-core
 
   packages/mercadolibre-login:
+    dependencies:
+      react:
+        specifier: '*'
+        version: 19.3.0
+      react-native:
+        specifier: '*'
+        version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
+    devDependencies:
+      '@franciscodlx/rn-auth-core':
+        specifier: workspace:*
+        version: link:../auth-core
+
+  packages/oauth-presets:
     dependencies:
       react:
         specifier: '*'
