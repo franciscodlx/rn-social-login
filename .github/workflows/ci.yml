@@ -26,6 +26,7 @@ jobs:
       - run: pnpm test
       - run: pnpm --filter @franciscodlx/mock-idp test
       - run: pnpm --filter @franciscodlx/linkedin-backend-example test
+      - run: pnpm --filter @franciscodlx/mercadolibre-backend-example test
       - run: pnpm build
 
   android:
@@ -34,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [auth-core-example, linkedin-login-example, x-login-example]
+        example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example]
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
@@ -63,6 +64,7 @@ jobs:
           - { dir: auth-core-example, app: RnAuthCoreExample }
           - { dir: linkedin-login-example, app: LinkedInLoginExample }
           - { dir: x-login-example, app: XLoginExample }
+          - { dir: mercadolibre-login-example, app: MercadoLibreLoginExample }
     env:
       RCT_USE_RN_DEP: 1
       RCT_USE_PREBUILT_RNCORE: 1

@@ -50,14 +50,14 @@ const session = await signIn({
 }); // { accessToken, refreshToken, expiresIn, profile }
 ```
 
-| Exporta                                                       | Para qué                                                    |
-| ------------------------------------------------------------- | ----------------------------------------------------------- |
-| `useXLogin(options)`                                          | Hook: `{ signIn, signOut, loading, result, error }`         |
-| `xLogin.signIn / signOut / isAvailable`                       | Lo mismo sin React; `signOut({ clientId, token })` revoca   |
-| `xLogin.refresh({ clientId, refreshToken })`                  | Nuevo access token (requiere `offline.access`)              |
-| `createXLogin(overrides)`                                     | Otra instancia, p. ej. contra un servidor de pruebas        |
-| `mapXProfile`, `xUserInfoUrl`, `X_TOKEN_ENDPOINT`, …          | Utilidades y constantes para tu backend                     |
-| `TwitterSignIn`                                               | Capa de compatibilidad (obsoleta), ver "Migrar"             |
+| Exporta                                              | Para qué                                                  |
+| ---------------------------------------------------- | --------------------------------------------------------- |
+| `useXLogin(options)`                                 | Hook: `{ signIn, signOut, loading, result, error }`       |
+| `xLogin.signIn / signOut / isAvailable`              | Lo mismo sin React; `signOut({ clientId, token })` revoca |
+| `xLogin.refresh({ clientId, refreshToken })`         | Nuevo access token (requiere `offline.access`)            |
+| `createXLogin(overrides)`                            | Otra instancia, p. ej. contra un servidor de pruebas      |
+| `mapXProfile`, `xUserInfoUrl`, `X_TOKEN_ENDPOINT`, … | Utilidades y constantes para tu backend                   |
+| `TwitterSignIn`                                      | Capa de compatibilidad (obsoleta), ver "Migrar"           |
 
 Scopes por defecto: `users.read tweet.read` (los que pide `GET /2/users/me`). `offline.access` agrega el refresh token; `users.email` agrega `profile.email`.
 
@@ -110,12 +110,12 @@ $me = Http::withToken($tokens['access_token'])
 
 ## Migrar desde react-native-twitter-signin
 
-| Antes                                                    | Ahora                                                        |
-| -------------------------------------------------------- | ------------------------------------------------------------ |
-| `RNTwitterSignIn.init(consumerKey, consumerSecret)`      | `TwitterSignIn.init(clientId, { redirectUri })`              |
+| Antes                                                                 | Ahora                                                                        |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `RNTwitterSignIn.init(consumerKey, consumerSecret)`                   | `TwitterSignIn.init(clientId, { redirectUri })`                              |
 | `logIn()` → `{ authToken, authTokenSecret, userName, userID, email }` | Igual; `authToken` es el access token OAuth 2.0 y `authTokenSecret` va vacío |
-| `logOut()`                                               | Igual; revoca el token                                       |
-| Twitter Kit, `twitterkit-<key>://` en Info.plist         | Ya no se necesitan                                           |
+| `logOut()`                                                            | Igual; revoca el token                                                       |
+| Twitter Kit, `twitterkit-<key>://` en Info.plist                      | Ya no se necesitan                                                           |
 
 Los tokens OAuth 2.0 no sirven para endpoints de la API v1.1 que exigen OAuth 1.0a.
 

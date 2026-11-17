@@ -321,6 +321,28 @@ export function createMockIdp({
           ),
         });
       }
+      // Mercado Libre: `GET /users/me`, a flat object with a numeric id.
+      if (req.method === 'GET' && url.pathname === '/users/me') {
+        const bearer = (req.headers.authorization ?? '').replace(
+          /^Bearer /i,
+          ''
+        );
+        return tokens.has(bearer)
+          ? send(res, 200, {
+              id: 202593498,
+              nickname: 'ADA.LOVELACE',
+              first_name: 'Ada',
+              last_name: 'Lovelace',
+              email: USER.email,
+              country_id: 'MX',
+              site_id: 'MLM',
+              thumbnail: {
+                picture_id: 'mock',
+                picture_url: 'https://example.com/ada.jpg',
+              },
+            })
+          : send(res, 401, { message: 'invalid_token', status: 401 });
+      }
       if (req.method === 'POST' && url.pathname === '/revoke') {
         tokens.delete((await readForm(req)).token);
         return send(res, 200, {});

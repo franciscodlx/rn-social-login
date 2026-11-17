@@ -11,10 +11,10 @@ const { code, codeVerifier } = await signIn({ clientId, redirectUri });
 | Paquete                                            | Qué hace                                                           | Estado                   |
 | -------------------------------------------------- | ------------------------------------------------------------------ | ------------------------ |
 | [`@franciscodlx/rn-auth-core`](packages/auth-core) | PKCE, `state`/`nonce`, navegador del sistema, errores normalizados | Probado en iOS y Android |
-| `@franciscodlx/react-native-linkedin-login`        | LinkedIn con OpenID Connect                                        | Siguiente                |
-| `@franciscodlx/react-native-x-login`               | X con OAuth 2.0 + PKCE                                             | Pendiente                |
-| `@franciscodlx/react-native-mercadolibre-login`    | Mercado Libre con selector de país                                 | Pendiente                |
-| `@franciscodlx/react-native-twitch-login`          | Twitch con OIDC                                                    | Pendiente                |
+| `@franciscodlx/react-native-linkedin-login`        | LinkedIn con OpenID Connect                                        | Probado con mock         |
+| `@franciscodlx/react-native-x-login`               | X con OAuth 2.0 + PKCE                                             | Probado con mock         |
+| `@franciscodlx/react-native-mercadolibre-login`    | Mercado Libre con selector de país                                 | Probado con mock         |
+| `@franciscodlx/react-native-twitch-login`          | Twitch con OIDC                                                    | Siguiente                |
 
 Cada proveedor es un paquete independiente (versión, changelog y publicación propios) que solo aporta endpoints, scopes y mapeo de perfil; el flujo y la seguridad viven en el núcleo.
 
@@ -27,6 +27,9 @@ examples/auth-core-example    app para probar el núcleo en iOS y Android
 examples/linkedin-login-example  app para probar LinkedIn
 packages/x-login              X / Twitter (JS sobre el núcleo)
 examples/x-login-example     app para probar X
+packages/mercadolibre-login  Mercado Libre (JS sobre el núcleo)
+examples/mercadolibre-login-example  app para probar Mercado Libre
+examples/mercadolibre-backend  backend de ejemplo: redirect https y canje con secret + PKCE
 examples/linkedin-backend     backend de ejemplo: redirect https y canje con el secret
 examples/mock-idp             proveedor OAuth/OIDC local, sin credenciales reales
 scripts/new-example.sh        crea la app de ejemplo de un plugin nuevo
