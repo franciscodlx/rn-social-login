@@ -16,6 +16,9 @@
 // The token endpoint also accepts HTTP Basic client authentication, and the
 // `phone` scope adds Telegram-style claims to the id_token.
 //
+// TikTok: `client_key` is accepted in place of `client_id`, the redirect
+// echoes `scopes`, and `GET /v2/user/info/` answers in TikTok's envelope.
+//
 // A request carrying the OpenID Connect `claims` parameter is answered like
 // Twitch: `sub` plus only the claims that were asked for.
 //
@@ -132,6 +135,7 @@ export function createMockIdp({
 
   function authorize(url, res) {
     const q = Object.fromEntries(url.searchParams);
+    q.client_id ??= q.client_key; // TikTok's name for the client id
     if (!q.client_id || !q.redirect_uri) {
       return send(res, 400, '<h1>Missing client_id or redirect_uri</h1>');
     }
@@ -178,6 +182,8 @@ export function createMockIdp({
         res,
         withParams(q.redirect_uri, {
           code,
+          // TikTok echoes the granted scopes, comma-separated.
+          ...(q.client_key ? { scopes: q.scope ?? '' } : {}),
           ...(q.state ? { state: q.state } : {}),
         })
       );
@@ -347,6 +353,7 @@ export function createMockIdp({
           form.client_id ??= id;
           form.client_secret ??= rest.join(':');
         }
+        form.client_id ??= form.client_key;
         return token(form, res);
       }
       if (req.method === 'GET' && url.pathname === '/userinfo') {
@@ -416,6 +423,40 @@ export function createMockIdp({
               },
             })
           : send(res, 401, { message: 'invalid_token', status: 401 });
+      }
+      // TikTok: `GET /v2/user/info/?fields=…`, wrapped in `data.user` with an
+      // `error` object whose code is "ok" on success.
+      if (req.method === 'GET' && url.pathname === '/v2/user/info/') {
+        const bearer = (req.headers.authorization ?? '').replace(
+          /^Bearer /i,
+          ''
+        );
+        if (!tokens.has(bearer)) {
+          return send(res, 401, {
+            data: {},
+            error: {
+              code: 'access_token_invalid',
+              message: 'The access token is invalid.',
+              log_id: 'mock',
+            },
+          });
+        }
+        const all = {
+          open_id: '723f24d7-e717-40f8-a2b6-cb8464cd23b4',
+          union_id: 'c9c60f44-a68e-4f5d-84dd-ce22faeb0ba1',
+          avatar_url: 'https://example.com/ada-tiktok.jpeg',
+          display_name: USER.name,
+          username: 'ada.lovelace',
+        };
+        const fields = (url.searchParams.get('fields') ?? '').split(',');
+        return send(res, 200, {
+          data: {
+            user: Object.fromEntries(
+              Object.entries(all).filter(([key]) => fields.includes(key))
+            ),
+          },
+          error: { code: 'ok', message: '', log_id: 'mock' },
+        });
       }
       // GitHub (`GET /user`) and Discord (`GET /users/@me`) user objects.
       if (

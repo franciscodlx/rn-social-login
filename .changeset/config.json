@@ -15,11 +15,13 @@
     "@franciscodlx/presets-backend-example",
     "@franciscodlx/react-native-linkedin-login-example",
     "@franciscodlx/react-native-telegram-login-example",
+    "@franciscodlx/react-native-tiktok-login-example",
     "@franciscodlx/react-native-twitch-login-example",
     "@franciscodlx/react-native-x-login-example",
     "@franciscodlx/rn-auth-core-example",
     "@franciscodlx/rn-oauth-presets-example",
     "@franciscodlx/telegram-backend-example",
+    "@franciscodlx/tiktok-backend-example",
     "@franciscodlx/twitch-backend-example"
   ]
 }

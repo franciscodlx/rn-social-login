@@ -17,6 +17,7 @@ const { code, codeVerifier } = await signIn({ clientId, redirectUri });
 | `@franciscodlx/react-native-twitch-login`          | Twitch con OIDC                                                    | Probado con mock         |
 | `@franciscodlx/rn-oauth-presets`                   | GitHub, Discord, Slack y Strava                                    | Probado con mock         |
 | `@franciscodlx/react-native-telegram-login`        | Telegram con OpenID Connect                                        | Probado con mock         |
+| `@franciscodlx/react-native-tiktok-login`          | TikTok Login Kit (flujo web)                                       | Probado con mock         |
 
 Cada proveedor es un paquete independiente (versión, changelog y publicación propios) que solo aporta endpoints, scopes y mapeo de perfil; el flujo y la seguridad viven en el núcleo.
 
@@ -41,6 +42,9 @@ examples/presets-backend     backend de ejemplo: una ruta de redirect y de canje
 packages/telegram-login      Telegram con OpenID Connect + PKCE (JS sobre el núcleo)
 examples/telegram-login-example  app para probar Telegram
 examples/telegram-backend    backend de ejemplo: canje con secret + PKCE y verificación del id_token
+packages/tiktok-login        TikTok Login Kit, flujo web (JS sobre el núcleo)
+examples/tiktok-login-example  app para probar TikTok
+examples/tiktok-backend      backend de ejemplo: canje con client key + secret y perfil
 examples/linkedin-backend     backend de ejemplo: redirect https y canje con el secret
 examples/mock-idp             proveedor OAuth/OIDC local, sin credenciales reales
 scripts/new-example.sh        crea la app de ejemplo de un plugin nuevo
