@@ -11,7 +11,7 @@ const { code, codeVerifier } = await signIn({ clientId, redirectUri });
 | Paquete                                            | Qué hace                                                           | Estado                   |
 | -------------------------------------------------- | ------------------------------------------------------------------ | ------------------------ |
 | [`@franciscodlx/rn-auth-core`](packages/auth-core) | PKCE, `state`/`nonce`, navegador del sistema, errores normalizados | Probado en iOS y Android |
-| `@franciscodlx/react-native-linkedin-login`        | LinkedIn con OpenID Connect                                        | Probado con mock         |
+| `@franciscodlx/react-native-linkedin-login`        | LinkedIn con OpenID Connect                                        | Probado con LinkedIn     |
 | `@franciscodlx/react-native-x-login`               | X con OAuth 2.0 + PKCE                                             | Probado con mock         |
 | `@franciscodlx/react-native-mercadolibre-login`    | Mercado Libre con selector de país                                 | Probado con mock         |
 | `@franciscodlx/react-native-twitch-login`          | Twitch con OIDC                                                    | Probado con mock         |

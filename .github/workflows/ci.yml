@@ -86,11 +86,23 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Prebuilt Hermes and React Native core tarballs (~30 MB each). Nine
+      # parallel jobs downloading them from repo.reactnative.dev get their
+      # connections reset now and then, so cache them and retry pod install.
+      - uses: actions/cache@v6
+        with:
+          path: ~/Library/Caches/ReactNative
+          key: rn-prebuilt-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install pods
         working-directory: examples/${{ matrix.example.dir }}
         run: |
           bundle install
-          bundle exec pod install --project-directory=ios
+          for attempt in 1 2 3; do
+            bundle exec pod install --project-directory=ios && exit 0
+            echo "::warning::pod install failed (attempt $attempt), retrying"
+            sleep $((attempt * 15))
+          done
+          exit 1
       - name: Build example
         working-directory: examples/${{ matrix.example.dir }}/ios
         run: |
