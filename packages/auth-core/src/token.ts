@@ -72,9 +72,14 @@ export async function requestJson(
   }
 
   if (!response.ok || typeof body.error === 'string') {
-    const providerError = asString(body.error);
+    // OAuth errors use `error`/`error_description`; REST APIs such as X's
+    // return problem details (`title`, `detail`, `reason`) instead.
+    const providerError = asString(body.error) ?? asString(body.reason);
     const description =
-      asString(body.error_description) ?? asString(body.message);
+      asString(body.error_description) ??
+      asString(body.message) ??
+      asString(body.detail) ??
+      asString(body.title);
     throw new AuthError(
       'PROVIDER_ERROR',
       description ??

@@ -1,6 +1,6 @@
 import { jsonResponse, makeJwt } from '../__fixtures__/helpers';
 import { decodeIdToken, validateIdTokenClaims } from '../idToken';
-import { exchangeCode, refreshAccessToken } from '../token';
+import { exchangeCode, fetchUserInfo, refreshAccessToken } from '../token';
 import { decodeParams } from '../url';
 
 const fetchMock = jest.fn<Promise<Response>, [string, RequestInit]>();
@@ -64,6 +64,28 @@ describe('exchangeCode', () => {
       message: 'Code expired',
       providerError: 'invalid_grant',
       status: 400,
+    });
+  });
+
+  it('reads problem details (title, detail, reason) from REST APIs', async () => {
+    fetchMock.mockResolvedValue(
+      jsonResponse(
+        {
+          title: 'Client Forbidden',
+          detail:
+            'This request must be made using an approved developer account.',
+          reason: 'client-not-enrolled',
+        },
+        403
+      )
+    );
+    await expect(
+      fetchUserInfo('https://api.test/2/users/me', 'at')
+    ).rejects.toMatchObject({
+      code: 'PROVIDER_ERROR',
+      message: 'This request must be made using an approved developer account.',
+      providerError: 'client-not-enrolled',
+      status: 403,
     });
   });
 
