@@ -3,7 +3,7 @@ import {
   type ProviderLogin,
   type SignInOptions,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { tikTokLogin, type TikTokProfile } from './provider';
 
 export type TikTokSignInOptions = Omit<SignInOptions, 'exchangeCode'>;

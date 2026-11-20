@@ -14,7 +14,7 @@ import {
   tikTokLogin,
   useTikTokLogin,
   type TikTokProfile,
-} from '@franciscodlx/react-native-tiktok-login';
+} from '@franciscodlxdev/react-native-tiktok-login';
 import { APP_CALLBACK, config, REDIRECT_URI, USE_MOCK } from './config';
 
 const login = config.mockAuthorizationEndpoint

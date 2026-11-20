@@ -17,10 +17,10 @@ export { useXLogin } from './useXLogin';
 export { TwitterSignIn } from './TwitterSignIn';
 export type { TwitterLoginData, TwitterSignInOptions } from './TwitterSignIn';
 // Same error class and codes as every plugin of the family.
-export { AuthError, isAuthError } from '@franciscodlx/rn-auth-core';
+export { AuthError, isAuthError } from '@franciscodlxdev/rn-auth-core';
 export type {
   AuthErrorCode,
   SignInOptions,
   SignInResult,
   TokenResponse,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';

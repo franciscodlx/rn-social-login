@@ -2,7 +2,7 @@
 // iOS needs no native configuration for custom-scheme redirects
 // (ASWebAuthenticationSession intercepts them itself).
 //
-//   plugins: [['@franciscodlx/rn-auth-core', { scheme: 'myapp' }]]
+//   plugins: [['@franciscodlxdev/rn-auth-core', { scheme: 'myapp' }]]
 const PLACEHOLDER = 'authCoreRedirectScheme';
 const LINE = new RegExp(
   `^[ \\t]*manifestPlaceholders\\[["']${PLACEHOLDER}["']\\][ \\t]*=.*\\n`,
@@ -36,7 +36,7 @@ function resolveScheme(config, props) {
   const scheme = (props && props.scheme) || fromConfig;
   if (!scheme) {
     throw new Error(
-      '[rn-auth-core] Set the redirect scheme: plugins: [["@franciscodlx/rn-auth-core", { scheme: "myapp" }]] or "scheme" in your app config.'
+      '[rn-auth-core] Set the redirect scheme: plugins: [["@franciscodlxdev/rn-auth-core", { scheme: "myapp" }]] or "scheme" in your app config.'
     );
   }
   return scheme;

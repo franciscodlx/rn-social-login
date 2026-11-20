@@ -12,8 +12,8 @@ Telegram no tiene endpoint de userinfo: el perfil son los claims del `id_token` 
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/telegram-backend-example start   # puerto 4500
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/telegram-backend-example start   # puerto 4500
 ```
 
 ## Con Telegram real

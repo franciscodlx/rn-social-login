@@ -3,7 +3,7 @@ import {
   useProviderLogin,
   type ProviderLogin,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { createPresetLogin, type PresetSignInOptions } from './login';
 import type { PresetName, PresetProfile } from './presets';
 

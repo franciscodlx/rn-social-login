@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import type { PresetName } from '@franciscodlx/rn-oauth-presets';
+import type { PresetName } from '@franciscodlxdev/rn-oauth-presets';
 
 /**
  * Client ID per provider. Leave one empty to try that provider against

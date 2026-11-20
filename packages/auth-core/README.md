@@ -1,4 +1,4 @@
-# @franciscodlx/rn-auth-core
+# @franciscodlxdev/rn-auth-core
 
 OAuth 2.0 + PKCE para React Native (iOS, Android, Expo) en el navegador del sistema: `ASWebAuthenticationSession` en iOS y Custom Tabs en Android. Sin WebView y sin `clientSecret` en la app.
 
@@ -13,7 +13,7 @@ Es el núcleo de la familia [rn-social-login](../..): úsalo directo con cualqui
 ## Instalación
 
 ```sh
-npm i @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -30,7 +30,7 @@ android {
 Expo:
 
 ```json
-{ "plugins": [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]] }
+{ "plugins": [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]] }
 ```
 
 Detalle por plataforma: [iOS](docs/ios.md), [Android](docs/android.md), [Expo](docs/expo.md).
@@ -49,7 +49,7 @@ Con un proveedor definido una vez:
 import {
   createProviderLogin,
   useProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 const login = createProviderLogin({
   id: 'mi-idp',

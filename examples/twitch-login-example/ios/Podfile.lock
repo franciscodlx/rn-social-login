@@ -1855,7 +1855,7 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios/ReactCodegen`)
   - ReactCommon/turbomodule/core (from `../../../node_modules/react-native/ReactCommon`)
   - ReactNativeDependencies (from `../../../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
-  - "RnAuthCore (from `../node_modules/@franciscodlx/rn-auth-core`)"
+  - "RnAuthCore (from `../node_modules/@franciscodlxdev/rn-auth-core`)"
   - SocketRocket (from `build/rndeps-facades/SocketRocket`)
   - Yoga (from `build/rncore-facades/Yoga`)
 
@@ -2030,7 +2030,7 @@ EXTERNAL SOURCES:
   ReactNativeDependencies:
     :podspec: "../../../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec"
   RnAuthCore:
-    :path: "../node_modules/@franciscodlx/rn-auth-core"
+    :path: "../node_modules/@franciscodlxdev/rn-auth-core"
   SocketRocket:
     :path: build/rndeps-facades/SocketRocket
   Yoga:

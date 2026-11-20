@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-tiktok-login
+# @franciscodlxdev/react-native-tiktok-login
 
 Login con TikTok para React Native (iOS, Android, Expo) con el flujo web de Login Kit, en el navegador del sistema. Sin WebView y sin `client_secret` en la app.
 
@@ -11,7 +11,7 @@ Login con TikTok para React Native (iOS, Android, Expo) con el flujo web de Logi
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-tiktok-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-tiktok-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -42,7 +42,7 @@ app ──code──▶ tu backend /exchange ──client_key + secret──▶ 
 import {
   grantedTikTokScopes,
   useTikTokLogin,
-} from '@franciscodlx/react-native-tiktok-login';
+} from '@franciscodlxdev/react-native-tiktok-login';
 
 const { signIn, loading, error } = useTikTokLogin({
   clientId: 'TU_CLIENT_KEY',

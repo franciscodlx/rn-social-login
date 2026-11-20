@@ -19,8 +19,8 @@ Lo que la app debe mandar junto con el `code`:
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/presets-backend-example start   # puerto 4400
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/presets-backend-example start   # puerto 4400
 ```
 
 ## Con proveedores reales

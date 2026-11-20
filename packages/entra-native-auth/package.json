@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-entra-native-auth",
+  "name": "@franciscodlxdev/react-native-entra-native-auth",
   "version": "0.1.0",
   "description": "Microsoft Entra External ID native authentication for React Native: sign-up, sign-in and password reset with your own screens, plus browser fallback.",
   "main": "./lib/module/index.js",
@@ -51,12 +51,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

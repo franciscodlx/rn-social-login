@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-telegram-login
+# @franciscodlxdev/react-native-telegram-login
 
 Log in with Telegram para React Native (iOS, Android, Expo) con OpenID Connect + PKCE, en el navegador del sistema. Sin WebView y sin Client Secret en la app.
 
@@ -11,7 +11,7 @@ Log in with Telegram para React Native (iOS, Android, Expo) con OpenID Connect +
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-telegram-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-telegram-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -38,7 +38,7 @@ app ──code + codeVerifier──▶ tu backend /exchange ──+ secret──
 ## Uso
 
 ```tsx
-import { useTelegramLogin } from '@franciscodlx/react-native-telegram-login';
+import { useTelegramLogin } from '@franciscodlxdev/react-native-telegram-login';
 
 const { signIn, loading, error } = useTelegramLogin({
   clientId: 'TU_CLIENT_ID',

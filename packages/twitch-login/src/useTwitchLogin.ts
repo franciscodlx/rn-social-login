@@ -3,7 +3,7 @@ import {
   type ProviderLogin,
   type SignInOptions,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { twitchLogin, type TwitchProfile } from './provider';
 
 export type TwitchSignInOptions = Omit<SignInOptions, 'exchangeCode'>;

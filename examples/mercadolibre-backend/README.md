@@ -10,8 +10,8 @@ Servidor Node sin dependencias que hace las dos cosas que Mercado Libre no permi
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/mercadolibre-backend-example start   # puerto 4200
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/mercadolibre-backend-example start   # puerto 4200
 ```
 
 ## Con Mercado Libre real

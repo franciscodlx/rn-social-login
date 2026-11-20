@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/rn-oauth-presets-example",
+  "name": "@franciscodlxdev/rn-oauth-presets-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
     "backend": "node ../presets-backend/server.mjs"
   },
   "dependencies": {
-    "@franciscodlx/rn-oauth-presets": "workspace:*",
-    "@franciscodlx/rn-auth-core": "workspace:*",
+    "@franciscodlxdev/rn-oauth-presets": "workspace:*",
+    "@franciscodlxdev/rn-auth-core": "workspace:*",
     "react": "19.3.0",
     "react-native": "0.88.0"
   },

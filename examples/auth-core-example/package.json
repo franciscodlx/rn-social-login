@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/rn-auth-core-example",
+  "name": "@franciscodlxdev/rn-auth-core-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "idp": "node ../mock-idp/server.mjs"
   },
   "dependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*",
+    "@franciscodlxdev/rn-auth-core": "workspace:*",
     "react": "19.3.0",
     "react-native": "0.88.0"
   },

@@ -5,7 +5,7 @@ import {
   type ProviderLogin,
   type SignInOptions,
   type TokenResponse,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 export const X_AUTHORIZATION_ENDPOINT = 'https://x.com/i/oauth2/authorize';
 export const X_TOKEN_ENDPOINT = 'https://api.x.com/2/oauth2/token';

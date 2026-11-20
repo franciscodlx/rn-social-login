@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/presets-backend-example",
+  "name": "@franciscodlxdev/presets-backend-example",
   "version": "0.0.0",
   "private": true,
   "description": "Example backend for rn-oauth-presets: https redirect bounce and code exchange for GitHub, Discord, Slack and Strava",

@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/rn-oauth-presets",
+  "name": "@franciscodlxdev/rn-oauth-presets",
   "version": "0.1.0",
   "description": "Ready-made GitHub, Discord, Slack and Strava logins for React Native on rn-auth-core: system browser, code exchanged by your backend.",
   "main": "./lib/module/index.js",
@@ -52,12 +52,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

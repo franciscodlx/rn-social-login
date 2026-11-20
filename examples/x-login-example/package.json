@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-x-login-example",
+  "name": "@franciscodlxdev/react-native-x-login-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "idp": "node ../mock-idp/server.mjs"
   },
   "dependencies": {
-    "@franciscodlx/react-native-x-login": "workspace:*",
-    "@franciscodlx/rn-auth-core": "workspace:*",
+    "@franciscodlxdev/react-native-x-login": "workspace:*",
+    "@franciscodlxdev/rn-auth-core": "workspace:*",
     "react": "19.3.0",
     "react-native": "0.88.0"
   },

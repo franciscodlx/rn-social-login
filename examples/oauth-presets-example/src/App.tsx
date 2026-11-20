@@ -13,7 +13,7 @@ import {
   isAuthError,
   type PresetName,
   type PresetProfile,
-} from '@franciscodlx/rn-oauth-presets';
+} from '@franciscodlxdev/rn-oauth-presets';
 import { APP_CALLBACK, providerConfig } from './config';
 
 const PROVIDERS: { name: PresetName; label: string; color: string }[] = [

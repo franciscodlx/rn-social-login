@@ -1,4 +1,4 @@
-import { AuthError, type AuthErrorCode } from '@franciscodlx/rn-auth-core';
+import { AuthError, type AuthErrorCode } from '@franciscodlxdev/rn-auth-core';
 
 export interface RequiredAttribute {
   name: string;

@@ -1,4 +1,4 @@
-// Example backend for @franciscodlx/react-native-mercadolibre-login.
+// Example backend for @franciscodlxdev/react-native-mercadolibre-login.
 //
 // Mercado Libre needs two things a mobile app cannot provide:
 //   1. an https redirect URI     → GET  /auth/mercadolibre/callback forwards

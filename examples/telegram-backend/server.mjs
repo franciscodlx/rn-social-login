@@ -1,4 +1,4 @@
-// Example backend for @franciscodlx/react-native-telegram-login.
+// Example backend for @franciscodlxdev/react-native-telegram-login.
 //
 // Telegram needs two things a mobile app cannot provide:
 //   1. an https redirect URI      → GET  /auth/telegram/callback forwards the

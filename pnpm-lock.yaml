@@ -235,7 +235,7 @@ importers:
 
   examples/auth-core-example:
     dependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -287,10 +287,10 @@ importers:
 
   examples/entra-native-auth-example:
     dependencies:
-      '@franciscodlx/react-native-entra-native-auth':
+      '@franciscodlxdev/react-native-entra-native-auth':
         specifier: workspace:*
         version: link:../../packages/entra-native-auth
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -344,10 +344,10 @@ importers:
 
   examples/linkedin-login-example:
     dependencies:
-      '@franciscodlx/react-native-linkedin-login':
+      '@franciscodlxdev/react-native-linkedin-login':
         specifier: workspace:*
         version: link:../../packages/linkedin-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -401,10 +401,10 @@ importers:
 
   examples/mercadolibre-login-example:
     dependencies:
-      '@franciscodlx/react-native-mercadolibre-login':
+      '@franciscodlxdev/react-native-mercadolibre-login':
         specifier: workspace:*
         version: link:../../packages/mercadolibre-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -460,10 +460,10 @@ importers:
 
   examples/oauth-presets-example:
     dependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
-      '@franciscodlx/rn-oauth-presets':
+      '@franciscodlxdev/rn-oauth-presets':
         specifier: workspace:*
         version: link:../../packages/oauth-presets
       react:
@@ -519,10 +519,10 @@ importers:
 
   examples/telegram-login-example:
     dependencies:
-      '@franciscodlx/react-native-telegram-login':
+      '@franciscodlxdev/react-native-telegram-login':
         specifier: workspace:*
         version: link:../../packages/telegram-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -576,10 +576,10 @@ importers:
 
   examples/tiktok-login-example:
     dependencies:
-      '@franciscodlx/react-native-tiktok-login':
+      '@franciscodlxdev/react-native-tiktok-login':
         specifier: workspace:*
         version: link:../../packages/tiktok-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -633,10 +633,10 @@ importers:
 
   examples/twitch-login-example:
     dependencies:
-      '@franciscodlx/react-native-twitch-login':
+      '@franciscodlxdev/react-native-twitch-login':
         specifier: workspace:*
         version: link:../../packages/twitch-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -688,10 +688,10 @@ importers:
 
   examples/x-login-example:
     dependencies:
-      '@franciscodlx/react-native-x-login':
+      '@franciscodlxdev/react-native-x-login':
         specifier: workspace:*
         version: link:../../packages/x-login
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../../packages/auth-core
       react:
@@ -759,7 +759,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -772,7 +772,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -785,7 +785,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -798,7 +798,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -811,7 +811,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -824,7 +824,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -837,7 +837,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 
@@ -850,7 +850,7 @@ importers:
         specifier: '*'
         version: 0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(@react-native-community/cli@20.2.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.88.0(@babel/core@7.29.13(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     devDependencies:
-      '@franciscodlx/rn-auth-core':
+      '@franciscodlxdev/rn-auth-core':
         specifier: workspace:*
         version: link:../auth-core
 

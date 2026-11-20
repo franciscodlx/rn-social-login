@@ -3,7 +3,7 @@ import {
   type ProviderLogin,
   type SignInOptions,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { telegramLogin, type TelegramProfile } from './provider';
 
 export type TelegramSignInOptions = Omit<SignInOptions, 'exchangeCode'>;

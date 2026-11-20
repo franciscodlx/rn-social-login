@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-linkedin-login
+# @franciscodlxdev/react-native-linkedin-login
 
 Login con LinkedIn para React Native (iOS, Android, Expo) con OpenID Connect, en el navegador del sistema. Sin WebView y sin `clientSecret` en la app.
 
@@ -11,7 +11,7 @@ Login con LinkedIn para React Native (iOS, Android, Expo) con OpenID Connect, en
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-linkedin-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-linkedin-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ El núcleo se instala aparte para que React Native enlace su módulo nativo. And
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -39,7 +39,7 @@ app ──code──▶ tu backend /exchange ──code + secret──▶ Linked
 ## Uso
 
 ```tsx
-import { useLinkedInLogin } from '@franciscodlx/react-native-linkedin-login';
+import { useLinkedInLogin } from '@franciscodlxdev/react-native-linkedin-login';
 
 function LinkedInButton() {
   const { signIn, loading, error } = useLinkedInLogin({

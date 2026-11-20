@@ -10,8 +10,8 @@ Servidor Node sin dependencias que hace las dos cosas que Twitch no permite hace
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/twitch-backend-example start
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/twitch-backend-example start
 ```
 
 ## Con Twitch real

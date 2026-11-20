@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-entra-native-auth-example",
+  "name": "@franciscodlxdev/react-native-entra-native-auth-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "entra": "node ../mock-entra/server.js"
   },
   "dependencies": {
-    "@franciscodlx/react-native-entra-native-auth": "workspace:*",
-    "@franciscodlx/rn-auth-core": "workspace:*",
+    "@franciscodlxdev/react-native-entra-native-auth": "workspace:*",
+    "@franciscodlxdev/rn-auth-core": "workspace:*",
     "react": "19.3.0",
     "react-native": "0.88.0"
   },

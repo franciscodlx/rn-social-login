@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-entra-native-auth
+# @franciscodlxdev/react-native-entra-native-auth
 
 Native authentication de Microsoft Entra External ID para React Native (iOS, Android, Expo): alta, inicio de sesión y restablecimiento de contraseña con tus propias pantallas, sin abrir el navegador. Es un cliente de la API de Microsoft, no un envoltorio de los SDK MSAL nativos.
 
@@ -11,7 +11,7 @@ Native authentication de Microsoft Entra External ID para React Native (iOS, And
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-entra-native-auth @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-entra-native-auth @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -36,7 +36,7 @@ Solo funciona con **tenants externos** (External ID), no con tenants de empleado
 Cada llamada devuelve el siguiente paso; tu pantalla muestra lo que ese paso pide y devuelve el paso completo a la siguiente función.
 
 ```ts
-import { createEntraNativeAuth } from '@franciscodlx/react-native-entra-native-auth';
+import { createEntraNativeAuth } from '@franciscodlxdev/react-native-entra-native-auth';
 
 const auth = createEntraNativeAuth({
   tenantSubdomain: 'contoso', // contoso.onmicrosoft.com

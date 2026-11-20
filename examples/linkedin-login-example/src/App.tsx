@@ -14,7 +14,7 @@ import {
   LinkedInModal,
   useLinkedInLogin,
   type LinkedInProfile,
-} from '@franciscodlx/react-native-linkedin-login';
+} from '@franciscodlxdev/react-native-linkedin-login';
 import { APP_CALLBACK, config, REDIRECT_URI, USE_MOCK } from './config';
 
 const login = config.mockAuthorizationEndpoint

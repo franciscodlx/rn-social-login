@@ -13,7 +13,7 @@ import {
   telegramLogin,
   useTelegramLogin,
   type TelegramProfile,
-} from '@franciscodlx/react-native-telegram-login';
+} from '@franciscodlxdev/react-native-telegram-login';
 import { APP_CALLBACK, config, REDIRECT_URI, SCOPES, USE_MOCK } from './config';
 
 const login = config.mockAuthorizationEndpoint

@@ -3,7 +3,7 @@
 La librería tiene código nativo: funciona en development builds y en builds de EAS, no en Expo Go (`isAvailable()` devuelve `false` y `signIn` falla con `NOT_SUPPORTED`).
 
 ```sh
-npx expo install @franciscodlx/rn-auth-core
+npx expo install @franciscodlxdev/rn-auth-core
 ```
 
 `app.json`:
@@ -12,7 +12,7 @@ npx expo install @franciscodlx/rn-auth-core
 {
   "expo": {
     "scheme": "miapp",
-    "plugins": [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]
+    "plugins": [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]
   }
 }
 ```

@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-mercadolibre-login
+# @franciscodlxdev/react-native-mercadolibre-login
 
 Login con Mercado Libre para React Native (iOS, Android, Expo) con OAuth 2.0 + PKCE, en el navegador del sistema. Sin WebView y sin `client_secret` en la app.
 
@@ -13,7 +13,7 @@ Login con Mercado Libre para React Native (iOS, Android, Expo) con OAuth 2.0 + P
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-mercadolibre-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-mercadolibre-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -23,7 +23,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -41,7 +41,7 @@ app ──code + codeVerifier──▶ tu backend /exchange ──+ secret──
 ## Uso
 
 ```tsx
-import { useMercadoLibreLogin } from '@franciscodlx/react-native-mercadolibre-login';
+import { useMercadoLibreLogin } from '@franciscodlxdev/react-native-mercadolibre-login';
 
 const { signIn, loading, error } = useMercadoLibreLogin({
   country: 'MX',

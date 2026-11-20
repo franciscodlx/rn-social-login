@@ -15,7 +15,7 @@ import {
   cancelAuthorize,
   toAuthError,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { linkedInLogin, type LinkedInProfile } from './provider';
 
 /** @deprecated Shape kept from `@gcou/react-native-linkedin`. */

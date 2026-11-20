@@ -3,6 +3,6 @@ module.exports = {
   modulePathIgnorePatterns: ['<rootDir>/lib/'],
   // Test against the core's source, so no build step is needed first.
   moduleNameMapper: {
-    '^@franciscodlx/rn-auth-core$': '<rootDir>/../auth-core/src/index.ts',
+    '^@franciscodlxdev/rn-auth-core$': '<rootDir>/../auth-core/src/index.ts',
   },
 };

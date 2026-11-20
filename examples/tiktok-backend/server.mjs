@@ -1,4 +1,4 @@
-// Example backend for @franciscodlx/react-native-tiktok-login.
+// Example backend for @franciscodlxdev/react-native-tiktok-login.
 //
 // TikTok needs two things a mobile app cannot provide:
 //   1. an https redirect URI     → GET  /auth/tiktok/callback forwards

@@ -2,7 +2,7 @@ import {
   createProviderLogin,
   type ProviderConfig,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 export const TELEGRAM_ISSUER = 'https://oauth.telegram.org';
 export const TELEGRAM_AUTHORIZATION_ENDPOINT =

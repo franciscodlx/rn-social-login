@@ -4,7 +4,7 @@ import {
   type ProviderLogin,
   type SignInOptions,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import {
   createMercadoLibreLogin,
   type MercadoLibreCountry,

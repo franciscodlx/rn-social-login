@@ -3,7 +3,7 @@
 Servidor local que imita la API de native authentication de Microsoft Entra External ID (inicio de sesión, alta y restablecimiento de contraseña), para la app de ejemplo y las pruebas. Sigue la forma de las peticiones y respuestas de la referencia de Microsoft; no es Entra: no hay MFA, límites de intentos ni correo real.
 
 ```sh
-pnpm --filter @franciscodlx/mock-entra start   # http://localhost:4700
+pnpm --filter @franciscodlxdev/mock-entra start   # http://localhost:4700
 ```
 
 | Dato                      | Valor                                   |

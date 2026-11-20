@@ -12,7 +12,7 @@ import {
   createMercadoLibreLogin,
   useMercadoLibreLogin,
   type MercadoLibreProfile,
-} from '@franciscodlx/react-native-mercadolibre-login';
+} from '@franciscodlxdev/react-native-mercadolibre-login';
 import {
   APP_CALLBACK,
   config,

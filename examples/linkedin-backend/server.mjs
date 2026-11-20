@@ -1,4 +1,4 @@
-// Example backend for @franciscodlx/react-native-linkedin-login.
+// Example backend for @franciscodlxdev/react-native-linkedin-login.
 //
 // LinkedIn needs two things a mobile app cannot provide:
 //   1. an https redirect URI      → GET  /auth/linkedin/callback forwards the

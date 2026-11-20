@@ -14,7 +14,7 @@ import {
   isEntraAuthError,
   type EntraStep,
   type EntraTokens,
-} from '@franciscodlx/react-native-entra-native-auth';
+} from '@franciscodlxdev/react-native-entra-native-auth';
 import { config, DEMO, REDIRECT_URI, USE_MOCK } from './config';
 
 function Button(props: {

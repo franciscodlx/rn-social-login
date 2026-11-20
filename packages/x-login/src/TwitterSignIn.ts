@@ -1,4 +1,4 @@
-import { AuthError } from '@franciscodlx/rn-auth-core';
+import { AuthError } from '@franciscodlxdev/rn-auth-core';
 import { xLogin, X_EMAIL_SCOPE, type XLogin } from './provider';
 
 export interface TwitterSignInOptions {

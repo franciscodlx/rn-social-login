@@ -1,4 +1,4 @@
-import type { ProviderConfig } from '@franciscodlx/rn-auth-core';
+import type { ProviderConfig } from '@franciscodlxdev/rn-auth-core';
 
 /** Profile shape shared by every preset. `raw` keeps the provider's object. */
 export interface PresetProfile {

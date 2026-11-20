@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-linkedin-login",
+  "name": "@franciscodlxdev/react-native-linkedin-login",
   "version": "0.1.0",
   "description": "Sign In with LinkedIn (OpenID Connect) for React Native in the system browser. No WebView, no client secret in the app.",
   "main": "./lib/module/index.js",
@@ -53,12 +53,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

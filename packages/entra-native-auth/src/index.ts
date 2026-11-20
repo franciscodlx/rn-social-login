@@ -17,5 +17,5 @@ export type {
 export { EntraAuthError, isEntraAuthError } from './errors';
 export type { RequiredAttribute } from './errors';
 // Same error class and codes as every plugin of the family.
-export { AuthError, isAuthError } from '@franciscodlx/rn-auth-core';
-export type { AuthErrorCode } from '@franciscodlx/rn-auth-core';
+export { AuthError, isAuthError } from '@franciscodlxdev/rn-auth-core';
+export type { AuthErrorCode } from '@franciscodlxdev/rn-auth-core';

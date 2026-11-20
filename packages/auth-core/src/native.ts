@@ -5,7 +5,7 @@ export function getNativeModule(): Spec {
   if (!NativeRnAuthCore) {
     throw new AuthError(
       'NOT_SUPPORTED',
-      '@franciscodlx/rn-auth-core is not linked. Rebuild the app after installing it (it does not run in Expo Go).'
+      '@franciscodlxdev/rn-auth-core is not linked. Rebuild the app after installing it (it does not run in Expo Go).'
     );
   }
   return NativeRnAuthCore;

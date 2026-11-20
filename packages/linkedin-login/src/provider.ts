@@ -2,7 +2,7 @@ import {
   createProviderLogin,
   type ProviderConfig,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 export const LINKEDIN_ISSUER = 'https://www.linkedin.com/oauth';
 export const LINKEDIN_AUTHORIZATION_ENDPOINT =

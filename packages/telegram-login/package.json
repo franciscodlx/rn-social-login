@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-telegram-login",
+  "name": "@franciscodlxdev/react-native-telegram-login",
   "version": "0.1.0",
   "description": "Log in with Telegram (OpenID Connect + PKCE) for React Native in the system browser, code exchanged by your backend. No client secret in the app.",
   "main": "./lib/module/index.js",
@@ -51,12 +51,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

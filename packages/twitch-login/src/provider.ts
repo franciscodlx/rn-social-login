@@ -2,7 +2,7 @@ import {
   createProviderLogin,
   type ProviderConfig,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 export const TWITCH_ISSUER = 'https://id.twitch.tv/oauth2';
 export const TWITCH_AUTHORIZATION_ENDPOINT =

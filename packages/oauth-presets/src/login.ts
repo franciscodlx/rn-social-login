@@ -4,7 +4,7 @@ import {
   type ProviderConfig,
   type ProviderLogin,
   type SignInOptions,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import {
   presets,
   type Preset,

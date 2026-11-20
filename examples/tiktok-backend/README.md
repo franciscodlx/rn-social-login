@@ -10,8 +10,8 @@ Servidor Node sin dependencias que hace las dos cosas que TikTok no permite hace
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/tiktok-backend-example start   # puerto 4600
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/tiktok-backend-example start   # puerto 4600
 ```
 
 ## Con TikTok real

@@ -1,6 +1,6 @@
 ---
-'@franciscodlx/react-native-linkedin-login': minor
-'@franciscodlx/rn-auth-core': minor
+'@franciscodlxdev/react-native-linkedin-login': minor
+'@franciscodlxdev/rn-auth-core': minor
 ---
 
 `react-native-linkedin-login`: primera versión. Sign In with LinkedIn (OpenID Connect) en el navegador del sistema, `useLinkedInLogin()`, `mapLinkedInProfile()` y `LinkedInModal` como capa de compatibilidad con `@gcou/react-native-linkedin`.

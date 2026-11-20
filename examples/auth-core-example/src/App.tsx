@@ -13,12 +13,12 @@ import {
   createProviderLogin,
   isAvailable,
   useProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 // The Android emulator reaches the host machine through 10.0.2.2.
 const IDP = `http://${Platform.OS === 'android' ? '10.0.2.2' : 'localhost'}:4000`;
 
-// Run it with `pnpm --filter @franciscodlx/rn-auth-core-example idp`.
+// Run it with `pnpm --filter @franciscodlxdev/rn-auth-core-example idp`.
 const mockLogin = createProviderLogin({
   id: 'mock-idp',
   authorizationEndpoint: `${IDP}/authorize`,

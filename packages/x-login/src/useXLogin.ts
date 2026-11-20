@@ -2,7 +2,7 @@ import {
   useProviderLogin,
   type SignInOptions,
   type UseProviderLoginResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import { xLogin, type XLogin, type XProfile } from './provider';
 
 /**

@@ -2,7 +2,7 @@ import {
   createProviderLogin,
   type ProviderConfig,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 /**
  * Authorization host per country. The account is tied to one site, so the

@@ -3,7 +3,7 @@ import {
   type AuthorizeResult,
   type ProviderConfig,
   type ProviderLogin,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 
 export const TIKTOK_AUTHORIZATION_ENDPOINT =
   'https://www.tiktok.com/v2/auth/authorize/';

@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-tiktok-login-example",
+  "name": "@franciscodlxdev/react-native-tiktok-login-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
     "backend": "node ../tiktok-backend/server.mjs"
   },
   "dependencies": {
-    "@franciscodlx/react-native-tiktok-login": "workspace:*",
-    "@franciscodlx/rn-auth-core": "workspace:*",
+    "@franciscodlxdev/react-native-tiktok-login": "workspace:*",
+    "@franciscodlxdev/rn-auth-core": "workspace:*",
     "react": "19.3.0",
     "react-native": "0.88.0"
   },

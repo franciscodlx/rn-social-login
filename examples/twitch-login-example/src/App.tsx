@@ -13,7 +13,7 @@ import {
   twitchLogin,
   useTwitchLogin,
   type TwitchProfile,
-} from '@franciscodlx/react-native-twitch-login';
+} from '@franciscodlxdev/react-native-twitch-login';
 import { APP_CALLBACK, config, REDIRECT_URI, USE_MOCK } from './config';
 
 const login = config.mockAuthorizationEndpoint

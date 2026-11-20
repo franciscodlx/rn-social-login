@@ -6,7 +6,7 @@ import {
   validateIdTokenClaims,
   type IdTokenClaims,
   type SignInResult,
-} from '@franciscodlx/rn-auth-core';
+} from '@franciscodlxdev/rn-auth-core';
 import {
   EntraAuthError,
   type EntraErrorBody,

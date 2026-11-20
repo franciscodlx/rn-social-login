@@ -3,7 +3,7 @@
 #
 #   scripts/new-example.sh <dir> <AppName> <android-id-segment> <url-scheme> <npm-name>
 #   scripts/new-example.sh linkedin-login-example LinkedInLoginExample linkedinlogin linkedinexample \
-#     @franciscodlx/react-native-linkedin-login-example
+#     @franciscodlxdev/react-native-linkedin-login-example
 set -euo pipefail
 
 if [ "$#" -ne 5 ]; then
@@ -31,7 +31,7 @@ DEST="$ROOT/examples/$DIR"
     sed -i.bak \
       -e "s/RnAuthCoreExample/$APP/g" \
       -e "s/franciscodlx\.rnauthcore\.example/franciscodlx.$SEGMENT.example/g" \
-      -e "s|@franciscodlx/rn-auth-core-example|$NPM_NAME|g" \
+      -e "s|@franciscodlxdev/rn-auth-core-example|$NPM_NAME|g" \
       -e "s/\"rnauthcore\"/\"$SCHEME\"/g" \
       -e "s|rnauthcore://|$SCHEME://|g" \
       "$DEST/$target"

@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-twitch-login
+# @franciscodlxdev/react-native-twitch-login
 
 Login con Twitch para React Native (iOS, Android, Expo) con OpenID Connect, en el navegador del sistema. Sin WebView y sin `client_secret` en la app.
 
@@ -11,7 +11,7 @@ Login con Twitch para React Native (iOS, Android, Expo) con OpenID Connect, en e
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-twitch-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-twitch-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -40,7 +40,7 @@ Los clientes de tipo Public de Twitch solo pueden usar el flujo de código de di
 ## Uso
 
 ```tsx
-import { useTwitchLogin } from '@franciscodlx/react-native-twitch-login';
+import { useTwitchLogin } from '@franciscodlxdev/react-native-twitch-login';
 
 const { signIn, loading, error } = useTwitchLogin({
   clientId: 'TU_CLIENT_ID',

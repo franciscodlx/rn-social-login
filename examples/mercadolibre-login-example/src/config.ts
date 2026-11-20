@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import type { MercadoLibreCountry } from '@franciscodlx/react-native-mercadolibre-login';
+import type { MercadoLibreCountry } from '@franciscodlxdev/react-native-mercadolibre-login';
 
 /**
  * `true`: sign in against examples/mock-idp, no Mercado Libre app needed.

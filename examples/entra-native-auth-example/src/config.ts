@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import type { EntraNativeAuthConfig } from '@franciscodlx/react-native-entra-native-auth';
+import type { EntraNativeAuthConfig } from '@franciscodlxdev/react-native-entra-native-auth';
 
 /**
  * `true`: talk to examples/mock-entra, no Microsoft tenant needed.

@@ -10,13 +10,13 @@ El workspace usa `nodeLinker: hoisted` (ver `pnpm-workspace.yaml`): Gradle, Coco
 
 ## Correr el ejemplo
 
-1. Proveedor local: `pnpm --filter @franciscodlx/mock-idp start`. Con `MOCK_IDP_AUTO=approve` redirige sin mostrar la pantalla de consentimiento; con `MOCK_IDP_AUTO=deny` siempre rechaza.
-2. Metro: `pnpm --filter @franciscodlx/rn-auth-core-example start`.
-3. App: `pnpm --filter @franciscodlx/rn-auth-core-example ios` o `android`.
+1. Proveedor local: `pnpm --filter @franciscodlxdev/mock-idp start`. Con `MOCK_IDP_AUTO=approve` redirige sin mostrar la pantalla de consentimiento; con `MOCK_IDP_AUTO=deny` siempre rechaza.
+2. Metro: `pnpm --filter @franciscodlxdev/rn-auth-core-example start`.
+3. App: `pnpm --filter @franciscodlxdev/rn-auth-core-example ios` o `android`.
 
 En el emulador de Android el ejemplo llega al proveedor local por `10.0.2.2`; en el simulador de iOS, por `localhost`.
 
-Para LinkedIn el ejemplo necesita además el backend: `pnpm --filter @franciscodlx/linkedin-backend-example start` y la app `@franciscodlx/react-native-linkedin-login-example`. Mercado Libre funciona igual con `@franciscodlx/mercadolibre-backend-example` (puerto 4200) y `@franciscodlx/react-native-mercadolibre-login-example`. Twitch usa `@franciscodlx/twitch-backend-example` (puerto 4300) y `@franciscodlx/react-native-twitch-login-example`. Los presets usan `@franciscodlx/presets-backend-example` (puerto 4400) y `@franciscodlx/rn-oauth-presets-example`. Telegram usa `@franciscodlx/telegram-backend-example` (puerto 4500) y `@franciscodlx/react-native-telegram-login-example`. TikTok usa `@franciscodlx/tiktok-backend-example` (puerto 4600) y `@franciscodlx/react-native-tiktok-login-example`. Entra usa `@franciscodlx/mock-entra` (puerto 4700, código de un solo uso `12345678`) y `@franciscodlx/react-native-entra-native-auth-example`, sin backend. X solo necesita el proveedor local y `@franciscodlx/react-native-x-login-example`.
+Para LinkedIn el ejemplo necesita además el backend: `pnpm --filter @franciscodlxdev/linkedin-backend-example start` y la app `@franciscodlxdev/react-native-linkedin-login-example`. Mercado Libre funciona igual con `@franciscodlxdev/mercadolibre-backend-example` (puerto 4200) y `@franciscodlxdev/react-native-mercadolibre-login-example`. Twitch usa `@franciscodlxdev/twitch-backend-example` (puerto 4300) y `@franciscodlxdev/react-native-twitch-login-example`. Los presets usan `@franciscodlxdev/presets-backend-example` (puerto 4400) y `@franciscodlxdev/rn-oauth-presets-example`. Telegram usa `@franciscodlxdev/telegram-backend-example` (puerto 4500) y `@franciscodlxdev/react-native-telegram-login-example`. TikTok usa `@franciscodlxdev/tiktok-backend-example` (puerto 4600) y `@franciscodlxdev/react-native-tiktok-login-example`. Entra usa `@franciscodlxdev/mock-entra` (puerto 4700, código de un solo uso `12345678`) y `@franciscodlxdev/react-native-entra-native-auth-example`, sin backend. X solo necesita el proveedor local y `@franciscodlxdev/react-native-x-login-example`.
 
 ## Qué probar en dispositivo antes de abrir un PR
 
@@ -47,4 +47,4 @@ pnpm changeset   # describe el cambio; genera la entrada del CHANGELOG
 
 ## Publicar
 
-`pnpm version-packages` aplica los changesets y `pnpm release` compila y publica en npm (requiere sesión con acceso al scope `@franciscodlx`).
+`pnpm version-packages` aplica los changesets y `pnpm release` compila y publica en npm (requiere sesión con acceso al scope `@franciscodlxdev`).

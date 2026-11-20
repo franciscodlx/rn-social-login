@@ -14,7 +14,7 @@ import {
   useXLogin,
   xLogin,
   type TwitterLoginData,
-} from '@franciscodlx/react-native-x-login';
+} from '@franciscodlxdev/react-native-x-login';
 import { config, REDIRECT_URI, SCOPES, USE_MOCK } from './config';
 
 const login = config.overrides ? createXLogin(config.overrides) : xLogin;

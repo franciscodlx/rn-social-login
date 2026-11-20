@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-x-login",
+  "name": "@franciscodlxdev/react-native-x-login",
   "version": "0.1.0",
   "description": "Sign in with X (Twitter) for React Native: OAuth 2.0 + PKCE in the system browser, as a public client. No consumer secret in the app.",
   "main": "./lib/module/index.js",
@@ -52,12 +52,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

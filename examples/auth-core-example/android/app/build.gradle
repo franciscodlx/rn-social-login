@@ -85,7 +85,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        // Scheme of the OAuth redirect URI handled by @franciscodlx/rn-auth-core.
+        // Scheme of the OAuth redirect URI handled by @franciscodlxdev/rn-auth-core.
         manifestPlaceholders["authCoreRedirectScheme"] = "rnauthcore"
     }
     signingConfigs {

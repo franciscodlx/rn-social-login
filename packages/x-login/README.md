@@ -1,4 +1,4 @@
-# @franciscodlx/react-native-x-login
+# @franciscodlxdev/react-native-x-login
 
 Login con X (Twitter) para React Native (iOS, Android, Expo) con OAuth 2.0 + PKCE, en el navegador del sistema. Cliente público: sin consumer secret en la app.
 
@@ -11,7 +11,7 @@ Login con X (Twitter) para React Native (iOS, Android, Expo) con OAuth 2.0 + PKC
 ## Instalación
 
 ```sh
-npm i @franciscodlx/react-native-x-login @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/react-native-x-login @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Configurar el proveedor
 
@@ -33,7 +33,7 @@ Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
 ## Uso
 
 ```tsx
-import { useXLogin } from '@franciscodlx/react-native-x-login';
+import { useXLogin } from '@franciscodlxdev/react-native-x-login';
 
 const { signIn, loading, error } = useXLogin({
   clientId: 'TU_CLIENT_ID',

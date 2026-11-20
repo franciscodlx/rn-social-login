@@ -1,6 +1,6 @@
-# @franciscodlx/rn-oauth-presets
+# @franciscodlxdev/rn-oauth-presets
 
-Login con GitHub, Discord, Slack y Strava para React Native (iOS, Android, Expo) sobre [`@franciscodlx/rn-auth-core`](../auth-core): navegador del sistema, sin WebView y sin `client_secret` en la app.
+Login con GitHub, Discord, Slack y Strava para React Native (iOS, Android, Expo) sobre [`@franciscodlxdev/rn-auth-core`](../auth-core): navegador del sistema, sin WebView y sin `client_secret` en la app.
 
 ## Compatibilidad
 
@@ -11,7 +11,7 @@ Login con GitHub, Discord, Slack y Strava para React Native (iOS, Android, Expo)
 ## Instalación
 
 ```sh
-npm i @franciscodlx/rn-oauth-presets @franciscodlx/rn-auth-core
+npm i @franciscodlxdev/rn-oauth-presets @franciscodlxdev/rn-auth-core
 cd ios && pod install
 ```
 
@@ -21,7 +21,7 @@ Android necesita el esquema de tu app en `android/app/build.gradle`:
 manifestPlaceholders["authCoreRedirectScheme"] = "miapp"
 ```
 
-Expo: `plugins: [["@franciscodlx/rn-auth-core", { "scheme": "miapp" }]]`.
+Expo: `plugins: [["@franciscodlxdev/rn-auth-core", { "scheme": "miapp" }]]`.
 
 ## Presets
 
@@ -42,7 +42,7 @@ app ──code + codeVerifier | nonce──▶ tu backend /exchange ──+ secr
 ## Uso
 
 ```tsx
-import { useOAuthPreset } from '@franciscodlx/rn-oauth-presets';
+import { useOAuthPreset } from '@franciscodlxdev/rn-oauth-presets';
 
 const { signIn, loading, error } = useOAuthPreset('github', {
   clientId: 'TU_CLIENT_ID',

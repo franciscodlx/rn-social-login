@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/react-native-twitch-login",
+  "name": "@franciscodlxdev/react-native-twitch-login",
   "version": "0.1.0",
   "description": "Login with Twitch (OpenID Connect) for React Native in the system browser, code exchanged by your backend. No client secret in the app.",
   "main": "./lib/module/index.js",
@@ -50,12 +50,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@franciscodlx/rn-auth-core": "^0.1.0",
+    "@franciscodlxdev/rn-auth-core": "^0.1.0",
     "react": "*",
     "react-native": "*"
   },
   "devDependencies": {
-    "@franciscodlx/rn-auth-core": "workspace:*"
+    "@franciscodlxdev/rn-auth-core": "workspace:*"
   },
   "react-native-builder-bob": {
     "source": "src",

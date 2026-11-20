@@ -1,5 +1,5 @@
 {
-  "name": "@franciscodlx/rn-auth-core",
+  "name": "@franciscodlxdev/rn-auth-core",
   "version": "0.1.0",
   "description": "OAuth 2.0 + PKCE in the system browser for React Native (ASWebAuthenticationSession / Custom Tabs). Shared core of the rn-social-login plugins.",
   "main": "./lib/module/index.js",

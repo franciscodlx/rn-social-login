@@ -10,8 +10,8 @@ Servidor Node sin dependencias que hace las dos cosas que LinkedIn no permite ha
 ## Con el proveedor local
 
 ```sh
-pnpm --filter @franciscodlx/mock-idp start
-pnpm --filter @franciscodlx/linkedin-backend-example start
+pnpm --filter @franciscodlxdev/mock-idp start
+pnpm --filter @franciscodlxdev/linkedin-backend-example start
 ```
 
 ## Con LinkedIn real

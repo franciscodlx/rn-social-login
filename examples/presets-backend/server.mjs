@@ -1,4 +1,4 @@
-// Example backend for @franciscodlx/rn-oauth-presets.
+// Example backend for @franciscodlxdev/rn-oauth-presets.
 //
 // GitHub, Discord, Slack and Strava all need the client secret to exchange
 // the code, so for each provider this server offers:
