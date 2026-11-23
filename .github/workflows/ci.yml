@@ -1,7 +1,9 @@
 name: CI
+
+# Pull requests only. main takes changes through merged pull requests alone
+# (ruleset: PR required, these checks must pass), so the merged code already
+# passed here; release.yml publishes it without running the suite again.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 

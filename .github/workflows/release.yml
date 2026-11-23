@@ -1,14 +1,14 @@
 name: Release
 
-# Runs after CI passes on main. Publishes to npm every package whose version in
+# Runs on every merge to main (its CI ran on the pull request).
+# Publishes to npm every package whose version in
 # package.json is not on npm yet, then tags it and opens a GitHub release.
 # To release: bump the version in your PR (`pnpm changeset` + `pnpm version-packages`)
 # and merge it. Nothing to publish → the job ends without changes.
 on:
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
+  push:
     branches: [main]
+  workflow_dispatch: # run it again by hand, e.g. after setting up a registry
 
 permissions: {}
 
@@ -19,15 +19,13 @@ concurrency:
 jobs:
   npm:
     name: Publish to npm
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write # tags and GitHub releases
       id-token: write # npm trusted publishing (OIDC) and provenance, no token
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
       - uses: pnpm/action-setup@v4
       # No registry-url: it would set NODE_AUTH_TOKEN and npm would skip OIDC.
       - uses: actions/setup-node@v7
@@ -41,4 +39,4 @@ jobs:
       - run: node scripts/release.mjs
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
+          RELEASE_SHA: ${{ github.sha }}
