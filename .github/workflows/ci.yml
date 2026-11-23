@@ -1,7 +1,9 @@
 name: CI
+
+# Pull requests only. main takes changes through merged pull requests alone
+# (ruleset: PR required, these checks must pass), so the merged code already
+# passed here; release.yml publishes it without running the suite again.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -15,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
@@ -45,7 +47,7 @@ jobs:
         example: [auth-core-example, linkedin-login-example, x-login-example, mercadolibre-login-example, twitch-login-example, oauth-presets-example, telegram-login-example, tiktok-login-example, entra-native-auth-example]
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
@@ -54,12 +56,22 @@ jobs:
         with:
           distribution: zulu
           java-version: '17'
+          # Gradle distribution and plugins: fewer downloads that can fail mid-run.
+          cache: gradle
       - run: pnpm install --frozen-lockfile
       - name: Build example
         working-directory: examples/${{ matrix.example }}/android
         env:
           GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx6g'
-        run: ./gradlew assembleDebug --no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a
+        # The Gradle plugin portal fails a resolution now and then
+        # ("Plugin ... was not found"); one retry gets past it.
+        run: |
+          for attempt in 1 2; do
+            ./gradlew assembleDebug --no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a && exit 0
+            echo "::warning::Gradle build failed (attempt $attempt)"
+            sleep 20
+          done
+          exit 1
 
   ios:
     name: ${{ matrix.example.dir }} (iOS)
@@ -87,7 +99,7 @@ jobs:
       RCT_USE_PREBUILT_RNCORE: 1
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
