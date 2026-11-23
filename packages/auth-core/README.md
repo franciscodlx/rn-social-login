@@ -1,5 +1,7 @@
 # @franciscodlxdev/rn-auth-core
 
+<p align="center"><img src="https://raw.githubusercontent.com/franciscodlx/rn-social-login/main/.github/assets/demo.gif" width="260" alt="Demo: iniciar sesión en el navegador del sistema y volver a la app"></p>
+
 OAuth 2.0 + PKCE para React Native (iOS, Android, Expo) en el navegador del sistema: `ASWebAuthenticationSession` en iOS y Custom Tabs en Android. Sin WebView y sin `clientSecret` en la app.
 
 Es el núcleo de la familia [rn-social-login](../..): úsalo directo con cualquier proveedor OAuth 2.0 / OpenID Connect, o a través de un paquete de proveedor.
