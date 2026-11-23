@@ -26,7 +26,7 @@ jobs:
       id-token: write # npm trusted publishing (OIDC) and provenance, no token
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       # No registry-url: it would set NODE_AUTH_TOKEN and npm would skip OIDC.
       - uses: actions/setup-node@v7
         with:
