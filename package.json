@@ -19,7 +19,7 @@
     "lint": "eslint \"packages/**/*.{js,ts,tsx}\" \"examples/**/*.{js,ts,tsx}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && node scripts/release.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",

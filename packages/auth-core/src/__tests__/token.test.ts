@@ -1,6 +1,11 @@
 import { jsonResponse, makeJwt } from '../__fixtures__/helpers';
 import { decodeIdToken, validateIdTokenClaims } from '../idToken';
-import { exchangeCode, fetchUserInfo, refreshAccessToken } from '../token';
+import {
+  REQUEST_TIMEOUT_MS,
+  exchangeCode,
+  fetchUserInfo,
+  refreshAccessToken,
+} from '../token';
 import { decodeParams } from '../url';
 
 const fetchMock = jest.fn<Promise<Response>, [string, RequestInit]>();
@@ -98,6 +103,26 @@ describe('exchangeCode', () => {
         refreshToken: 'rt',
       })
     ).rejects.toMatchObject({ code: 'NETWORK' });
+  });
+
+  it('reports NETWORK when the provider does not answer in time', async () => {
+    jest.useFakeTimers();
+    try {
+      fetchMock.mockImplementationOnce(() => new Promise<Response>(() => {}));
+      const result = refreshAccessToken({
+        tokenEndpoint: 'https://idp.test/token',
+        clientId: 'c',
+        refreshToken: 'rt',
+      }).catch((e: unknown) => e);
+      await jest.advanceTimersByTimeAsync(REQUEST_TIMEOUT_MS);
+      expect(await result).toMatchObject({
+        code: 'NETWORK',
+        message: expect.stringContaining('did not answer'),
+      });
+      expect(fetchMock.mock.calls[0]?.[1].signal?.aborted).toBe(true);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });
 

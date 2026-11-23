@@ -47,19 +47,62 @@ function asNumber(value: unknown): number | undefined {
     : undefined;
 }
 
+/** How long a token, userinfo or revoke request may take before it fails with `NETWORK`. */
+export const REQUEST_TIMEOUT_MS = 30_000;
+
+/** Fetches `url` and reads its body, giving up after {@link REQUEST_TIMEOUT_MS}. */
+async function fetchText(
+  url: string,
+  init: RequestInit
+): Promise<[Response, string]> {
+  // Aborting frees the connection where AbortController exists; the timer
+  // alone already settles the promise everywhere else.
+  const controller =
+    typeof AbortController === 'function' && !init.signal
+      ? new AbortController()
+      : undefined;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      controller?.abort();
+      reject(
+        new AuthError(
+          'NETWORK',
+          `${url} did not answer within ${REQUEST_TIMEOUT_MS / 1000} s`
+        )
+      );
+    }, REQUEST_TIMEOUT_MS);
+  });
+  const request = (async (): Promise<[Response, string]> => {
+    const response = await fetch(
+      url,
+      controller ? { ...init, signal: controller.signal } : init
+    );
+    return [response, await response.text().catch(() => '')];
+  })();
+  try {
+    return await Promise.race([request, timeout]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export async function requestJson(
   url: string,
   init: RequestInit
 ): Promise<Record<string, unknown>> {
   let response: Response;
+  let text: string;
   try {
-    response = await fetch(url, init);
+    [response, text] = await fetchText(url, init);
   } catch (error) {
+    if (error instanceof AuthError) {
+      throw error;
+    }
     throw new AuthError('NETWORK', `Could not reach ${url}`, { cause: error });
   }
 
   let body: Record<string, unknown> = {};
-  const text = await response.text().catch(() => '');
   if (text) {
     try {
       const parsed: unknown = JSON.parse(text);

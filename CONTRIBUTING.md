@@ -47,4 +47,10 @@ pnpm changeset   # describe el cambio; genera la entrada del CHANGELOG
 
 ## Publicar
 
-`pnpm version-packages` aplica los changesets y `pnpm release` compila y publica en npm (requiere sesión con acceso al scope `@franciscodlxdev`).
+Se publica solo al hacer merge a `main`:
+
+1. En tu PR, `pnpm changeset` describe el cambio (patch, minor o major) y `pnpm version-packages` sube las versiones y escribe los `CHANGELOG.md`. Haz commit de ambos.
+2. En el PR, el CI empaqueta todo y hace un dry run de lo que se publicaría (`node scripts/release.mjs --dry-run`).
+3. Al hacer merge, cuando el CI de `main` pasa, el workflow `Release` publica en npm cada paquete cuya versión aún no está ahí, con trusted publishing (OIDC, sin token) y provenance, y crea el tag `<paquete>@<versión>` con su release de GitHub.
+
+Un PR sin cambio de versión no publica nada. Un paquete **nuevo** se publica la primera vez a mano (`pnpm pack` y `npm publish <tgz> --access public`), y después se le configura trusted publishing en npmjs.com.
