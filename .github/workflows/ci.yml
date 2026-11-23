@@ -33,6 +33,8 @@ jobs:
       - run: pnpm --filter @franciscodlxdev/tiktok-backend-example test
       - run: pnpm --filter @franciscodlxdev/mock-entra test
       - run: pnpm build
+      - name: Packages publish cleanly (dry run)
+        run: node scripts/release.mjs --dry-run
 
   android:
     name: ${{ matrix.example }} (Android)

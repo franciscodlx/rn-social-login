@@ -25,5 +25,8 @@
     "@franciscodlxdev/telegram-backend-example",
     "@franciscodlxdev/tiktok-backend-example",
     "@franciscodlxdev/twitch-backend-example"
-  ]
+  ],
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
 }
